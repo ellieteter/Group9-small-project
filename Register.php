@@ -2,8 +2,8 @@
 
 $inData = getRequestInfo();
 
-
 $conn = new mysqli("localhost", "API", "Ethan", "COP4331");
+
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
@@ -16,12 +16,12 @@ if ($conn->connect_error) {
 
     $checkresult = $checkstmt->get_result();
 
-    if (checkresult->num_rows > 0) {
+    if ($checkresult->num_rows > 0) {
         //User is already registered
         returnWithError("User already registered with this login");
     } else {
         $stmt = $conn->prepare("INSERT INTO Users (firstName,lastName,Login,Password) VALUES(?,?,?,?)");
-        $stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["login"], $inData["password"]);
+        $stmt->bind_param("ssss", $inData["firstname"], $inData["lastName"], $inData["login"], $inData["password"]);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -38,7 +38,6 @@ if ($conn->connect_error) {
 
     $checkstmt->close();
 }
-
 
 function getRequestInfo()
 {
