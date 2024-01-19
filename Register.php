@@ -20,13 +20,13 @@ if ($conn->connect_error) {
         //User is already registered
         returnWithError("User already registered with this login");
     } else {
-        $stmt = $conn->prepare("INSERT INTO Users (firstName,lastName,Login,Password) VALUES(?,?,?,?)");
+        $stmt = $conn->prepare("INSERT into Users (firstName,lastName,Login,Password) VALUES(?,?,?,?)");
         $stmt->bind_param("ssss", $inData["firstname"], $inData["lastName"], $inData["login"], $inData["password"]);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($stmt->affected_rows > 0) {
-            returnWithInfo($inData["firstname"], $inData["lastname"], $conn->insert_id);
+            returnWithError("");
         } else {
 
             returnWithError("Unable to Create the Record");
@@ -34,6 +34,7 @@ if ($conn->connect_error) {
 
         $stmt->close();
         $conn->close();
+
     }
 
     $checkstmt->close();
@@ -52,13 +53,7 @@ function sendResultInfoAsJson($obj)
 
 function returnWithError($err)
 {
-    $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-    sendResultInfoAsJson($retValue);
-}
-
-function returnWithInfo($firstName, $lastName, $id)
-{
-    $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+    $retValue = '{"error":"' . $err . '"}';
     sendResultInfoAsJson($retValue);
 }
 
