@@ -9,9 +9,9 @@ $conn = new mysqli("localhost", "API", "Ethan", "COP4331");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("Select firstName from Contacts where firstName like ? and UserID=?");
+    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE? OR LastName LIKE? OR Phone LIKE? OR Email LIKE?) AND UserID=?");
     $contactName = "%" . $inData["search"] . "%";
-    $stmt->bind_param("ss", $contactName, $inData["userId"]);
+    $stmt->bind_param("ssss", $contactName, $contactName, $contactName, $contactName, $inData["userId"]);
     $stmt->execute();
 
     $result = $stmt->get_result();
@@ -21,7 +21,7 @@ if ($conn->connect_error) {
             $searchResults .= ",";
         }
         $searchCount++;
-        $searchResults .= '"' . $row["Name"] . '"';
+        $searchResults .= '{"firstName":"' . $row["FirstName"] . '", "lastName":"' . $row["LastName"] . '", "phone":"' . $row["Phone"] . '", "email":"' . $row["Email"] . '"}';
     }
 
     if ($searchCount == 0) {
