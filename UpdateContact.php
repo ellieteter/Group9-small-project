@@ -7,7 +7,9 @@ $conn = new mysqli("localhost", "API", "Ethan", "COP4331");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-
+    $stmt = $conn->prepare("UPDATE Contacts SET firstName = ?, lastName = ?,phone = ?,email = ? WHERE UserID = ? AND firstName = ? AND lastName = ? AND phone = ? AND email = ? ");
+    $stmt->bind_param("sssssssss", $inData["NEWfirstName"], $inData["NEWlastName"], $inData["NEWphone"], $inData["NEWemail"], $inData["userId"], $inData["OLDfirstName"], $inData["OLDlastName"], $inData["OLDphone"], $inData["OLDemail"]);
+    $stmt->execute();
     $conn->close();
     returnWithError("");
 }
