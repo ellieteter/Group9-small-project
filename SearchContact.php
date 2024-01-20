@@ -9,7 +9,7 @@ $conn = new mysqli("localhost", "API", "Ethan", "COP4331");
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("select Name from Contacts where Name like ? and UserID=?");
+    $stmt = $conn->prepare("Select firstName from Contacts where firstName like ? and UserID=?");
     $contactName = "%" . $inData["search"] . "%";
     $stmt->bind_param("ss", $contactName, $inData["userId"]);
     $stmt->execute();
