@@ -1,6 +1,14 @@
 body 
 {
-    background-color: lightblue;
+    /* Refer to TOUCAN color scheme */
+    background-color: #66BCD0;
+    background-image: url('../images/smallprojectpotbg.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+    overflow: hidden;
 }
 
 #title 
@@ -10,7 +18,7 @@ body
     margin: 2% 5%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
-    color: #c51fbd;
+    color: #AEC500;
 }
 
 #loginDiv
@@ -19,7 +27,7 @@ body
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #b2b2b2;
+    background-color: #FBD805;
 }
 
 #loggedInDiv
@@ -28,7 +36,7 @@ body
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #b2b2b2;
+    background-color: #FBD805;
 }
 
 #accessUIDiv
@@ -37,7 +45,7 @@ body
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #b2b2b2;
+    background-color: #FBD805;
 }
 
 .buttons
@@ -49,9 +57,10 @@ body
     font-family: 'Ubuntu', sans-serif;
 }
 
-.buttons:hover{
-    background-color: #00d5124f;
-    color: #FFFFFF;
+.buttons:hover
+{
+    background-color: #F77700;
+    color: #070709;
     opacity: 50%;
 }
 
@@ -59,20 +68,24 @@ body
 {
 	font-size: 30px;
 }
+
 #loginPassword
 {
 	font-size: 30px;
 }
+
 #searchText
 {
 	font-size: 30px;
 }
+
 #colorText
 {
 	font-size: 30px;
 }
 
-input[type="text"],input[type="password"]{
+input[type="text"],input[type="password"]
+{
     border-radius: 25px;
     text-align: center;
     width: 80%;
@@ -81,7 +94,8 @@ input[type="text"],input[type="password"]{
     font-family: 'Ubuntu', sans-serif;
 }
 
-#inner-title{
+#inner-title
+{
     display: inline-block;
     font-size: 0.8em;
     width: 90%;
@@ -89,7 +103,7 @@ input[type="text"],input[type="password"]{
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    color: #070709;
 }
 
 #loginResult{
@@ -100,22 +114,25 @@ input[type="text"],input[type="password"]{
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    color: #070709;
 }
 
-#userName{
+#userName
+{
     display: inline-block;
     width: 80%;
     margin-left: 10%;
     text-align: center;
 }
 
-#logoutButton{
+#logoutButton
+{
     width: 20%;
     margin-left: 40%;
 }
 
-select{
+select
+{
     width: 30%;
     margin-left: 35%;
     margin-top: 2%;
@@ -123,11 +140,13 @@ select{
     font-family: 'Ubuntu', sans-serif;
 }
 
-#colorSearchResult{
+#colorSearchResult
+{
     display: none;
 }
 
-#colorAddResult{
+#colorAddResult
+{
     display: inline-block;
     font-size: 0.8em;
     width: 90%;
@@ -136,10 +155,11 @@ select{
     margin-top: 2%;
     margin-bottom: 1%;
     font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    color: #070709;
 }
 
-.topnav {
-    background-color: rgb(255, 248, 248);
+.topnav
+{
+    background-color: #66BCD0;
     overflow: hidden;
-  }
+}
