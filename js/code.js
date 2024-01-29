@@ -59,9 +59,8 @@ function doLogin()
 
 }
 
-function doRegister(){
-
-	
+function doRegister()
+{
 	firstName = document.getElementById("firstName").value;
 	lastName = document.getElementById("lastName").value;
 	let username = document.getElementById("inputUsername").value;
@@ -97,20 +96,23 @@ function doRegister(){
 	
 				
 				window.location.href = "contacts.html";
-			}else if (this.status == 409){
+			}
+			else if (this.status == 409)
+			{
 				document.getElementById("registerResult").innerHTML = "User already exists";
 
-			}else {
+			}
+			else 
+			{
 				document.getElementById("registerResult").innerHTML = "Server error: " + this.status;
 			}
-		};
+		}
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
 		document.getElementById("registerResult").innerHTML = err.message;
 	}
-
 }
 
 function saveCookie()
