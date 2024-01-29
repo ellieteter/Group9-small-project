@@ -23,8 +23,9 @@
             <!-- First & last name -->
             <div class="input-group">
                 <span class="input-group-text">First and last name</span>
-                <input type="text" aria-label="fname" class="form-control">
-                <input type="text" aria-label="lname" class="form-control">
+                <input type="text" aria-label="fname" id= "firstName"class="form-control">
+                <input type="text" aria-label="lname" id= "lastName"class="form-control">
+                
             </div>
 
             <!-- Username creation -->
@@ -41,7 +42,8 @@
             Your password must be 8-20 characters long, contain at least (1) capital letter, (1) number, (1) special character, and must not contain spaces or emoji.
             </div>
 
-            <button type="button" id="signUpButton" class="buttons" onclick="doLogin();">Sign up</button>
+            <button type="button" id="signUpButton" class="buttons" onclick="doRegister();">Sign up</button>
+            <span id="registerResult"></span>
 
         </div>
     </body>
