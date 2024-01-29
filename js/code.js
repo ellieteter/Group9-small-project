@@ -1,4 +1,4 @@
-const urlBase = 'http://COP4331-5.com/LAMPAPI';
+const urlBase = 'http://infonest.online/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -13,7 +13,7 @@ function doLogin()
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
+	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
@@ -46,7 +46,8 @@ function doLogin()
 
 				saveCookie();
 	
-				window.location.href = "color.html";
+				
+				window.location.href = "contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -54,6 +55,60 @@ function doLogin()
 	catch(err)
 	{
 		document.getElementById("loginResult").innerHTML = err.message;
+	}
+
+}
+
+function doRegister(){
+
+	
+	firstName = document.getElementById("firstName").value;
+	lastName = document.getElementById("lastName").value;
+	let username = document.getElementById("inputUsername").value;
+	let password = document.getElementById("inputPassword").value;
+
+	var hash = md5( password );
+	
+	document.getElementById("registerResult").innerHTML = "";
+
+	let tmp = {firstName:firstName,lastName:lastName,username:username,password:password};
+//	var tmp = {login:login,password:hash};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/Register.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+				document.getElementById("registerResult").innerHTML = "User has been added!";
+
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
+
+				saveCookie();
+	
+				
+				window.location.href = "contacts.html";
+			}else if (this.status == 409){
+				document.getElementById("registerResult").innerHTML = "User already exists";
+
+			}else {
+				document.getElementById("registerResult").innerHTML = "Server error: " + this.status;
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("registerResult").innerHTML = err.message;
 	}
 
 }
