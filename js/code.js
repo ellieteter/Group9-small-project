@@ -105,8 +105,6 @@ function doRegister()
 				document.getElementById("registerResult").innerHTML = "Server error: " + this.status;
 			}
 		}
-		xhr.onreadystatechange = handleResponse;
-
 		try {
 			xhr.send(jsonPayload);
 		} 
