@@ -71,7 +71,7 @@ function doRegister()
 	document.getElementById("registerResult").innerHTML = "";
 
 	//let tmp = {firstName:firstName,lastName:lastName,username:username,password:hash};
-	var tmp = {firstName: firstName, lastName: lastName, username: username, password: hash};
+	var tmp = {firstName: firstName, lastName: lastName, login: username, password: hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Register.' + extension;
