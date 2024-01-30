@@ -7,9 +7,9 @@ let lastName = "";
 
 function doLogin()
 {
-	userId = 0;
-	firstName = "";
-	lastName = "";
+	let userId = 0;
+	let firstName = "";
+	let lastName = "";
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
@@ -61,8 +61,8 @@ function doLogin()
 
 function doRegister()
 {
-	firstName = document.getElementById("firstName").value;
-	lastName = document.getElementById("lastName").value;
+	let firstName = document.getElementById("firstName").value;
+	let lastName = document.getElementById("lastName").value;
 	let username = document.getElementById("inputUsername").value;
 	let password = document.getElementById("inputPassword").value;
 
