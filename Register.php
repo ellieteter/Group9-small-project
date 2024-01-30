@@ -18,6 +18,9 @@ if ($conn->connect_error) {
 
     if ($checkresult->num_rows > 0) {
         //User is already registered
+        $checkstmt->close();
+        $conn->close();
+        http_response_code(409);
         returnWithError("User already registered with this login");
     } else {
         $stmt = $conn->prepare("INSERT into Users (firstName,lastName,Login,Password) VALUES(?,?,?,?)");
@@ -28,15 +31,14 @@ if ($conn->connect_error) {
         if ($stmt->affected_rows > 0) {
             returnWithInfo($inData["firstName"], $inData["lastName"], $conn->insert_id);
         } else {
-
+            http_response_code(500);
             returnWithError("Unable to Create the Record");
         }
 
-
+        $stmt->close();
     }
-    $stmt->close();
+
     $conn->close();
-    $checkstmt->close();
 }
 
 function getRequestInfo()
