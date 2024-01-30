@@ -7,13 +7,13 @@ let lastName = "";
 
 function doLogin()
 {
-	let userId = 0;
-	let firstName = "";
-	let lastName = "";
+	userId = 0;
+ 	firstName = "";
+	lastName = "";
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-	var hash = md5( password );
+	// var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
