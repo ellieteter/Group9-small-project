@@ -18,14 +18,15 @@ body
     margin: 2% 5%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
-    color: #AEC500;
+    color: #070709;
 }
 
 #loginDiv
 {
     font-size: 30px;
     width: 70%;
-    margin-left: 15%;
+    margin-left: 14%;
+    margin-top: 10%;
     padding: 25px;
     background-color: #FBD805;
 }
@@ -51,12 +52,55 @@ body
 .buttons
 {
     font-size: 20px;
-    border-radius: 25px;
+    /*border-radius: 25px;*/
     width: 20%;
-    margin-left: 10%;
+    margin-left: 20%;
     font-family: 'Ubuntu', sans-serif;
+    background-color: #b84f60; /* Set your desired background color */
+    color: rgb(5, 5, 5); /* Set your desired text color */
+}
+.logInButton
+{
+    font-size: 20px;
+    /*border-radius: 25px;*/
+    width: 20%;
+    margin-left: 40%;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #b84f60; /* Set your desired background color */
+    color: rgb(5, 5, 5); /* Set your desired text color */
 }
 
+.infoNestButton
+{
+   
+    background-image: url('../images/logo8.png');
+    mix-blend-mode: normal;
+    background-color: #66BCD0;
+
+    margin-left: 5%;  
+    background-size: cover; /* Adjust the background size property based on your design */
+    width: 100px; /* Set the width of the button */
+    height: 100px; /* Set the height of the button */
+    border: none; /* Remove border if needed */
+        /* Add any additional styling properties */
+    
+    
+
+}
+.loginInfoNestButton{
+    background-image: url('../images/logo8.png');
+    mix-blend-mode: hard-light;
+    background-color: transparent;
+    margin-top: 2%;
+
+    margin-left: 5%;  
+    background-size: cover; /* Adjust the background size property based on your design */
+    width: 100px; /* Set the width of the button */
+    height: 100px; /* Set the height of the button */
+    border: none; /* Remove border if needed */
+        /* Add any additional styling properties */
+
+}
 .buttons:hover
 {
     background-color: #F77700;
@@ -161,5 +205,6 @@ select
 .topnav
 {
     background-color: #66BCD0;
+    height: 100px;
     overflow: hidden;
 }
