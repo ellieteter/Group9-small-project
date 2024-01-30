@@ -54,7 +54,7 @@ body
     font-size: 20px;
     /*border-radius: 25px;*/
     width: 20%;
-    margin-left: 20%;
+    margin-left: 10%;
     font-family: 'Ubuntu', sans-serif;
     background-color: #b84f60; /* Set your desired background color */
     color: rgb(5, 5, 5); /* Set your desired text color */
@@ -88,7 +88,7 @@ body
 
 }
 .loginInfoNestButton{
-    background-image: url('../images/logo8.png');
+    /*background-image: url('../images/logo8.png');*/
     mix-blend-mode: hard-light;
     background-color: transparent;
     margin-top: 2%;
