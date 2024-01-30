@@ -70,7 +70,7 @@ function doRegister()
 	
 	document.getElementById("registerResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,username:username,password:password};
+	let tmp = {firstName:firstName,lastName:lastName,username:username,password:hash};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
