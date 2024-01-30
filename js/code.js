@@ -8,16 +8,16 @@ let lastName = "";
 function doLogin()
 {
 	userId = 0;
- 	firstName = "";
+	firstName = "";
 	lastName = "";
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-	// var hash = md5( password );
+	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
+	let tmp = {login:login,password:hash};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
@@ -61,8 +61,8 @@ function doLogin()
 
 function doRegister()
 {
-	let firstName = document.getElementById("firstName").value;
-	let lastName = document.getElementById("lastName").value;
+	firstName = document.getElementById("firstName").value;
+	lastName = document.getElementById("lastName").value;
 	let username = document.getElementById("inputUsername").value;
 	let password = document.getElementById("inputPassword").value;
 
@@ -70,7 +70,8 @@ function doRegister()
 	
 	document.getElementById("registerResult").innerHTML = "";
 
-	var tmp = {firstName: firstName, lastName: lastName, login: username, password: hash};
+	let tmp = {firstName:firstName,lastName:lastName,username:username,password:hash};
+//	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Register.' + extension;
@@ -78,7 +79,8 @@ function doRegister()
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
+	try
+	{
 		xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
@@ -105,12 +107,12 @@ function doRegister()
 				document.getElementById("registerResult").innerHTML = "Server error: " + this.status;
 			}
 		}
-		try {
-			xhr.send(jsonPayload);
-		} 
-		catch (err) {
-			document.getElementById("registerResult").innerHTML = err.message;
-		}
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("registerResult").innerHTML = err.message;
+	}
 }
 
 function saveCookie()
