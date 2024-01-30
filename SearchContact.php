@@ -57,4 +57,3 @@ function returnWithInfo($searchResults)
     sendResultInfoAsJson($retValue);
 }
 
-?>

@@ -32,10 +32,10 @@ if ($conn->connect_error) {
             returnWithError("Unable to Create the Record");
         }
 
-        $stmt->close();
-        $conn->close();
-    }
 
+    }
+    $stmt->close();
+    $conn->close();
     $checkstmt->close();
 }
 
@@ -61,7 +61,3 @@ function returnWithInfo($firstName, $lastName, $id)
     $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
     sendResultInfoAsJson($retValue);
 }
-
-
-
-?>
