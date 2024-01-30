@@ -17,8 +17,8 @@ function doLogin()
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:hash};
-//	var tmp = {login:login,password:hash};
+	var tmp = {login: login, password: hash};
+	// let tmp = {login: login, password: password};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Login.' + extension;
@@ -61,8 +61,8 @@ function doLogin()
 
 function doRegister()
 {
-	firstName = document.getElementById("firstName").value;
-	lastName = document.getElementById("lastName").value;
+	let firstName = document.getElementById("firstName").value;
+	let lastName = document.getElementById("lastName").value;
 	let username = document.getElementById("inputUsername").value;
 	let password = document.getElementById("inputPassword").value;
 
@@ -70,8 +70,7 @@ function doRegister()
 	
 	document.getElementById("registerResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,username:username,password:hash};
-//	var tmp = {login:login,password:hash};
+	var tmp = {firstName: firstName, lastName: lastName, login: username, password: hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Register.' + extension;
@@ -79,37 +78,38 @@ function doRegister()
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	xhr.onreadystatechange = function() 
+	{
+		if (this.readyState == 4 && this.status == 200) 
+		{
+			let jsonObject = JSON.parse( xhr.responseText );
+			userId = jsonObject.id;
+			document.getElementById("registerResult").innerHTML = "User has been added!";
+
+			firstName = jsonObject.firstName;
+			lastName = jsonObject.lastName;
+
+			saveCookie();
+
+			
+			window.location.href = "contacts.html";
+		}
+		else if (this.status == 409)
+		{
+			document.getElementById("registerResult").innerHTML = "User already exists";
+
+		}
+		else 
+		{
+			document.getElementById("registerResult").innerHTML = "Server error: " + this.status;
+		}
+	}
 	try
 	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-				document.getElementById("registerResult").innerHTML = "User has been added!";
-
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
-
-				saveCookie();
-	
-				
-				window.location.href = "contacts.html";
-			}
-			else if (this.status == 409)
-			{
-				document.getElementById("registerResult").innerHTML = "User already exists";
-
-			}
-			else 
-			{
-				document.getElementById("registerResult").innerHTML = "Server error: " + this.status;
-			}
-		}
 		xhr.send(jsonPayload);
 	}
-	catch(err)
+	catch (err)
 	{
 		document.getElementById("registerResult").innerHTML = err.message;
 	}
