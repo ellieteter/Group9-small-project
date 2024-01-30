@@ -70,7 +70,6 @@ function doRegister()
 	
 	document.getElementById("registerResult").innerHTML = "";
 
-	//let tmp = {firstName:firstName,lastName:lastName,username:username,password:hash};
 	var tmp = {firstName: firstName, lastName: lastName, login: username, password: hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
@@ -79,6 +78,7 @@ function doRegister()
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
 		xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
