@@ -1,42 +1,42 @@
 html,
 body {
-  height: 100%;
-}
+    height: 100%;
+  }
+  
+  .form-signin {
+    max-width: 330px;
+    padding: 1rem;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  /* .form-signin input[type="username"] */
+  .form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 
-.form-signin {
-  max-width: 330px;
-  padding: 1rem;
-}
-
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
-
-/* .form-signin input[type="username"] */
-.form-signin input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-/* body */
-/* { */
-    /* Refer to TOUCAN color scheme */
-    /* background-color: #66BCD0;
+/*body 
+{
+    
+    background-color: #66BCD0;
     background-image: url('../images/smallprojectpotbg.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     margin: 0;
-    overflow: hidden; */
-/* } */
+    overflow: hidden;
+}*/
 
 #title 
 {
@@ -55,6 +55,7 @@ body {
     margin-left: 14%;
     margin-top: 10%;
     padding: 25px;
+    border-radius: 25%; /* it kinda looks ugly*/      
     background-color: #FBD805;
 }
 
@@ -76,12 +77,20 @@ body {
     background-color: #FBD805;
 }
 
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
 .buttons
 {
     font-size: 20px;
     /*border-radius: 25px;*/
     width: 20%;
+    
     margin-left: 10%;
+    margin-bottom: 100%;
     font-family: 'Ubuntu', sans-serif;
     background-color: #b84f60; /* Set your desired background color */
     color: rgb(5, 5, 5); /* Set your desired text color */
@@ -99,23 +108,26 @@ body {
 
 .infoNestButton
 {
-   
-    background-image: url('../images/logo8.png');
-    mix-blend-mode: normal;
+    /*background-image: url('../images/logo8.png');*/
+    /*mix-blend-mode: normal;*/
     background-color: #66BCD0;
+    /*margin-left: 5%;*/
+    display: inline-block;
 
-    margin-left: 5%;  
+    
     background-size: cover; /* Adjust the background size property based on your design */
     width: 100px; /* Set the width of the button */
     height: 100px; /* Set the height of the button */
     border: none; /* Remove border if needed */
-        /* Add any additional styling properties */
-    
+    margin-bottom: 20px;
+       
     
 
 }
+
+
 .loginInfoNestButton{
-    /*background-image: url('../images/logo8.png');*/
+    background-image: url('../images/logo8.png');
     mix-blend-mode: hard-light;
     background-color: transparent;
     margin-top: 2%;
@@ -133,6 +145,17 @@ body {
     background-color: #F77700;
     color: #070709;
     opacity: 50%;
+}
+
+.search input[type = text]
+{
+    float:right;
+    padding:6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+
 }
 
 #loginName
@@ -229,9 +252,10 @@ select
     color: #070709;
 }
 
-.topnav
+.bg-custom-color
 {
     background-color: #66BCD0;
-    height: 100px;
-    overflow: hidden;
+    /*height: 100px;
+    overflow: hidden;*/
 }
+
