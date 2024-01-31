@@ -1,15 +1,42 @@
-body 
-{
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+/* .form-signin input[type="username"] */
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* body */
+/* { */
     /* Refer to TOUCAN color scheme */
-    background-color: #66BCD0;
+    /* background-color: #66BCD0;
     background-image: url('../images/smallprojectpotbg.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     margin: 0;
-    overflow: hidden;
-}
+    overflow: hidden; */
+/* } */
 
 #title 
 {
