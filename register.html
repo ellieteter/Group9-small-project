@@ -14,30 +14,24 @@
 
     <body>
         <div id="loginDiv">
-            <!-- <span id="inner-title">PLEASE LOG IN</span>
-            <input type="text" id="loginName" placeholder="Username" /><br />
-            <input type="password" id="loginPassword" placeholder="Password"/><br />
-            <button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Log in </button>
-            <span id="loginResult"></span> -->
-
-            <!-- First & last name -->
-            <div class="input-group">
-                <span class="input-group-text">First and last name</span>
-                <input type="text" aria-label="fname" id= "firstName"class="form-control">
-                <input type="text" aria-label="lname" id= "lastName"class="form-control">
-            </div>
-
             <div class="container">
                 <form action="/Register.php">
-                  <label for="usrname">Username</label>
-                  <input type="text" id="usrname" name="usrname" required>
+
+                    <label for="usrname">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required>
+
+                    <label for="usrname">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required>
+
+                    <label for="usrname">Username</label>
+                    <input type="text" id="usrname" name="usrname" required>
               
-                  <label for="psw">Password</label>
-                  <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[\W_])(?=.*[A-Z]).{8,20}" title="Must contain at least one number, one special character, one uppercase letter, and 8-20 characters" required>
+                    <label for="psw">Password</label>
+                    <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[\W_])(?=.*[A-Z]).{8,20}" title="Must contain at least one number, one special character, one uppercase letter, and 8-20 characters" required>
                   
-                  <input type="submit" value="Submit">
-                </form>
-              </div>
+                    <input type="submit" class="btn custom-btn me-2 mt-2" value="Submit">
+                    </form>
+                </div>
               
               <div id="message">
                 <h3>Password must contain the following:</h3>
@@ -46,6 +40,7 @@
                 <p id="number" class="invalid">A <b>number</b></p>
                 <p id="length" class="invalid">Minimum <b>8 characters</b> and maximum <b>20</b></p>
               </div>
+            </div>
                               
               <script>
               var myInput = document.getElementById("psw");
