@@ -10,6 +10,14 @@ if ($conn->connect_error) {
     $stmt = $conn->prepare("UPDATE Contacts SET firstName = ?, lastName = ?,phone = ?,email = ? WHERE UserID = ? AND firstName = ? AND lastName = ? AND phone = ? AND email = ? ");
     $stmt->bind_param("sssssssss", $inData["NEWfirstName"], $inData["NEWlastName"], $inData["NEWphone"], $inData["NEWemail"], $inData["userId"], $inData["OLDfirstName"], $inData["OLDlastName"], $inData["OLDphone"], $inData["OLDemail"]);
     $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        http_response_code(200);
+    } else {
+        http_response_code(500);
+        returnWithError("Couldn't Update Contact");
+    }
+    $stmt->close();
     $conn->close();
     returnWithError("");
 }
@@ -29,5 +37,3 @@ function returnWithError($err)
     $retValue = '{"error":"' . $err . '"}';
     sendResultInfoAsJson($retValue);
 }
-
-?>

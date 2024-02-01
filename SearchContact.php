@@ -25,8 +25,10 @@ if ($conn->connect_error) {
     }
 
     if ($searchCount == 0) {
+        http_response_code(409);
         returnWithError("No Records Found");
     } else {
+        http_response_code(200);
         returnWithInfo($searchResults);
     }
 

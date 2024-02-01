@@ -15,6 +15,14 @@ if ($conn->connect_error) {
     $stmt = $conn->prepare("DELETE FROM Contacts WHERE (firstName = ? AND lastName = ? AND phone = ? AND email = ? AND userID = ?)");
     $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $userID);
     $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        http_response_code(200);
+    } else {
+        http_response_code(500);
+        returnWithError("Couldn't Delete from Contact");
+    }
+
     $stmt->close();
     $conn->close();
     returnWithError("");
@@ -35,5 +43,3 @@ function returnWithError($err)
     $retValue = '{"error":"' . $err . '"}';
     sendResultInfoAsJson($retValue);
 }
-
-?>
