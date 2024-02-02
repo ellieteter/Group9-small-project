@@ -1,4 +1,208 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <!-- HERE -->
+    <title>Register</title>
+    <script src="js/md5.js" type="text/javascript"></script>
+    <script src="js/code.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <!-- Custom styles for this template -->
+    <link href="sign-in.css" rel="stylesheet">
+  </head>
+  <!-- <body class="d-flex align-items-center py-4 bg-body-tertiary"> -->
+    <body class="d-flex align-items-center py-4 bg-info-subtle">
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+<main class="form-signin w-100 m-auto">
+  <form action="Register.php" method="post">
+    <h1 class="h3 mb-3 fw-normal">Register</h1>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="loginName" placeholder="First Name">
+          <label for="floatingInput">First Name</label>
+        </div>
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="loginName" placeholder="Last Name">
+          <label for="floatingInput">Last Name</label>
+        </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="loginName" placeholder="Username">
+      <label for="floatingInput">Username</label>
+    </div>
+
+    <div class="form-floating">
+        <input type="password" id="loginPassword" class="form-control" placeholder="Password" pattern="(?=.*\d)(?=.*[\W_])(?=.*[A-Z]).{8,20}" 
+        title="Must contain at least one number, one special character, one uppercase letter, and 8-20 characters" required>
+        <label for="psw floatingInput">Password</label>
+      </div>
+
+      <div id="message">
+        <h3>Password must contain the following:</h3>
+        <p id="special" class="invalid">A <b>special</b> character</p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>number</b></p>
+        <p id="length" class="invalid">Minimum <b>8 characters</b> and maximum <b>20</b></p>
+      </div>
+
+    <!-- Space between the LOGIN button and PASSWORD-->
+    <br />
+
+    <button type="button" id="loginButton" class="logInButton">Register</button>
+    <span id="loginResult"></span>
+    <p class="mt-5 mb-3 text-body-secondary">Spring 2024 - COP4331</p>
+  </form>
+</main>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="passwordToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Password Check</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      The password isn't valid.
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var myInput = document.getElementById("loginPassword");
+  var special = document.getElementById("special");
+  var capital = document.getElementById("capital");
+  var number = document.getElementById("number");
+  var length = document.getElementById("length");
+  var messageBox = document.getElementById("message");
+  var s = false;
+  var c = false;
+  var n = false;
+  var l = false;
+
+  // When the user clicks on the password field, show the message box
+  myInput.onfocus = function() {
+    messageBox.style.display = "block";
+  };
+
+  // When the user clicks outside of the password field, hide the message box
+  myInput.onblur = function() {
+    messageBox.style.display = "none";
+  };
+
+  // When the user starts to type something inside the password field
+  myInput.onkeyup = function() {
+    // Validate lowercase letters
+    var specialCharacter = /[\W_]/;
+    if(myInput.value.match(specialCharacter)) {
+      special.classList.remove("invalid");
+      special.classList.add("valid");
+      s = true;
+    } else {
+      special.classList.remove("valid");
+      special.classList.add("invalid");
+      s = false;
+    }
+
+    // Validate capital letters
+    var upperCaseLetters = /[A-Z]/;
+    if(myInput.value.match(upperCaseLetters)) {
+      capital.classList.remove("invalid");
+      capital.classList.add("valid");
+      c = true;
+    } else {
+      capital.classList.remove("valid");
+      capital.classList.add("invalid");
+      c = false;
+    }
+
+    // Validate numbers
+    var numbers = /[0-9]/;
+    if(myInput.value.match(numbers)) {
+      number.classList.remove("invalid");
+      number.classList.add("valid");
+      n = true;
+    } else {
+      number.classList.remove("valid");
+      number.classList.add("invalid");
+      n = false;
+    }
+
+    // Validate length
+    if(myInput.value.length >= 8 && myInput.value.length <= 20) {
+      length.classList.remove("invalid");
+      length.classList.add("valid");
+      l = true;
+    } else {
+      length.classList.remove("valid");
+      length.classList.add("invalid");
+      l = false;
+    }
+    return s && c && n && l;
+  };
+
+});
+
+document.getElementById("loginButton").onclick = function() {
+  if (validatePassword()) {
+    // Proceed with form submission or further processing
+    // e.g., call the function that submits the form data to register.php
+  } else {
+    // Show toast notification for invalid password
+    alert("Password isn't valid");
+  }
+};
+
+  </script>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 </html>
@@ -10,11 +214,11 @@
         <script src="js/code.js" type="text/javascript"></script>
         <link rel="stylesheet" href="css/styles.css">
         <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
     </head>
 
     <body>
-        <div id="loginDiv">
-            <div class="container">
+            <div class="container-fluid reg">
                 <form action="/Register.php">
 
                     <label for="usrname">First Name</label>
@@ -31,7 +235,7 @@
                   
                     <input type="submit" class="btn custom-btn me-2 mt-2" value="Submit">
                     </form>
-                </div>
+                
               
               <div id="message">
                 <h3>Password must contain the following:</h3>
@@ -101,117 +305,7 @@
                 }
               }
               </script>
-            <!-- <label for="inputUsername" class="form-label">Username</label>
-            <input type="username" id="inputUsername" class="form-control" aria-describedby="usernameHelpBlock">
-            <div id="usernameHelpBlock" class="form-text">
-            Your username must be 5-20 characters long and must not contain spaces or emoji.
-            </div>
-
-
-            <div class="container">
-            <label for="inputPassword" class="form-label">Password</label>
-            <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpBlock">
-            <div id="passwordHelpBlock" class="form-text">
-            Your password must be 8-20 characters long, contain at least (1) uppercase letter, (1) number,
-             (1) special character, and must not contain spaces or emoji.
-            </div>
-            <div id="message">
-                <h3>Password must contain the following:</h3>
-                <p id="letter" class="invalid">A <b>uppercase</b> letter</p>
-                <p id="special" class="invalid">A <b>special</b> character</p>
-                <p id="number" class="invalid">A <b>number</b></p>
-                <p id="length" class="invalid">Minimum <b>8 characters</b> and maximum <b>20 characters</b></p>
-                <p id="space" class="invalid">Password must not contain spaces.</p>
-              </div>
-            </div>
-
-            <button type="button" id="signUpButton" class="buttons" onclick="doRegister();">Sign up</button>
-            <span id="registerResult"></span>
-
-        </div>
-
-        <script>
-            var psw = document.getElementById("inputPassword");
-
-            psw.onfocus = function() 
-            {
-                document.getElementById("message").style.display = "block";
-            }
-            psw.onblur = function() 
-            {
-                document.getElementById("message").style.display = "none";
-            }
-
-            psw.onkeyup = function ()
-            {
-                validatePassword(psw.value);
-                console.log(psw.value);
-            }
-
-function validatePassword(password) {
-    var Upperletter = /[A-Z]/;
-    if(password.value.match(UpperLetter)) 
-    {
-        letter.classList.remove("invalid");
-        letter.classList.add("valid");
-    } 
-    else 
-    {
-        letter.classList.remove("valid");
-        letter.classList.add("invalid");   
-    }
-
-  // Validate capital letters
-    var SpecialChar = /[\W_]/;
-    if(password.value.match(SpecialChar)) 
-    {
-        special.classList.remove("invalid");
-        special.classList.add("valid");
-    } 
-    else 
-    {
-        special.classList.remove("valid");
-        special.classList.add("invalid");
-    }
-
-  // Validate numbers
-    var numbers = /[0-9]/;
-    if(password.value.match(numbers)) {
-        number.classList.remove("invalid");
-        number.classList.add("valid");
-    }     
-    else   
-    {
-        number.classList.remove("valid");
-        number.classList.add("invalid");
-    }
-
-  // Validate length
-    if(password.value.length >= 8 && password.value.length <= 20)   {
-        length.classList.remove("invalid");
-        length.classList.add("valid");
-    }     
-    else 
-    {
-        length.classList.remove("valid");
-        length.classList.add("invalid");
-    }
-
-    var spacePattern = /\s/;
-      if (spacePattern.test(password)) 
-      {
-        space.classList.remove('valid');
-        space.classList.add('invalid');
-      } 
-      else 
-      {
-        space.classList.remove('invalid');
-        space.classList.add('valid');
-      }
-} 
-</script>
--->
 
     </body>
 
-</html>
+</html> -->

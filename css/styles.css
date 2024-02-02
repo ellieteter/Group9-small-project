@@ -10,7 +10,7 @@ body
     background-attachment: fixed;
     background-size: cover;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
 }
   
 .form-signin 
@@ -70,7 +70,7 @@ body
     margin-top: 10%;
     padding: 25px;
     border-radius: 25%; /* it kinda looks ugly*/      
-    background-color: #FBD805;
+    background-color: #ee5050;
 }
 
 #loggedInDiv
@@ -297,10 +297,13 @@ select
     position: relative;
     padding: 20px;
     margin-top: 10px;
+    width: 175%;
+    box-sizing: border-box;
+    margin-left: -100px;
   }
   
   #message p {
-    padding: 10px 35px;
+    padding: 10px 30px;
     font-size: 18px;
   }
   
@@ -326,3 +329,20 @@ select
     content: "✖";
   }
 
+  .reg {
+    background-color: #ef4e4e;
+    padding: 20px;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    width: auto; /* Adjust width as needed */
+    max-width: 600px; /* Prevents the div from getting too wide on large screens */
+    box-sizing: border-box; /* Include padding in width calculation */
+    margin: auto; /* This is for horizontal centering in case the parent isn't flex */
+  }
+  
+  /* To ensure that only the .reg class gets the flex properties */
+  body > .reg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
