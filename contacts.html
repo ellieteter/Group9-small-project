@@ -15,11 +15,29 @@
 </head>
 <body>
 
+    <div id = "body">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">
+            Add Contact
+        </button>
+        <table class="table" id = "contactsTable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">UserID</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
 	
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">
-        Add Contact
-    </button>
+   
 
     <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -32,32 +50,36 @@
                     <!-- Your input groups go here -->
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">First Name</span>
-                        <input type="text" class="form-control" placeholder="firstName" aria-label="First Name" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="firstName" aria-label="First Name" aria-describedby="basic-addon1"id="firstName">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Last Name</span>
-                        <input type="text" class="form-control" placeholder="lastName" aria-label="Last Name" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="lastName" aria-label="Last Name" aria-describedby="basic-addon1"id="lastName">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Phone Number</span>
-                        <input type="text" class="form-control" placeholder="phone" aria-label="xxx-xxx-xxxx" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="phone" aria-label="xxx-xxx-xxxx" aria-describedby="basic-addon1"id="inputPhone">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Email Address</span>
-                        <input type="text" class="form-control" placeholder="email" aria-label="email" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="email" aria-label="email" aria-describedby="basic-addon1"id="inputEmail">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">UserID</span>
-                        <input type="text" class="form-control" placeholder="userID" aria-label="userID" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="userID" aria-label="userID" aria-describedby="basic-addon1"id="inputUserID">
                     </div>
                     <!-- ... other input groups ... -->
                 </div>
                 <div class="modal-footer mx-auto" >
-                    <button type="button" class="btn btn-primary" onclick="addContact()">Add Contact</button> 
+                    <button type="button" class="btn btn-primary" onclick="addContact();">Add Contact</button> 
+                    <span id="contactAddResult"></span>
                 </div>
             </div>
         </div>
     </div>
+
+    
+    
     
    <!-- <div class="container mt-5">
         <div class="mx-auto" style="width: 300px;">
