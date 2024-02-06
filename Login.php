@@ -17,9 +17,7 @@ if ($conn->connect_error) {
 
 	if ($row = $result->fetch_assoc()) {
 		returnWithInfo($row['firstName'], $row['lastName'], $row['ID']);
-		http_response_code(200);
 	} else {
-		http_response_code(500);
 		returnWithError("No Records Found");
 	}
 
@@ -49,5 +47,3 @@ function returnWithInfo($firstName, $lastName, $id)
 	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 	sendResultInfoAsJson($retValue);
 }
-
-?>
