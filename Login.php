@@ -16,6 +16,7 @@ if ($conn->connect_error) {
 	$result = $stmt->get_result();
 
 	if ($row = $result->fetch_assoc()) {
+		http_response_code(200);
 		returnWithInfo($row['firstName'], $row['lastName'], $row['ID']);
 	} else {
 		returnWithError("No Records Found");
