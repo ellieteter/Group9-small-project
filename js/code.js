@@ -289,7 +289,7 @@ function loadContacts()
 
 }
 
-
+/*
 function searchColor()
 {
 	let srch = document.getElementById("searchText").value;
@@ -334,3 +334,4 @@ function searchColor()
 	}
 	
 }
+*/
