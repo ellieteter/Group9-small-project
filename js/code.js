@@ -188,9 +188,12 @@ function addContact()
 	{
 		xhr.onreadystatechange = function() 
 		{
+			console.log("Ready state:", this.readyState);
+    		console.log("Status:", this.status);
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				console.log("Contact added successfully:", tmp);
 				updateUIWithContact(tmp)
 			}
 		};
@@ -240,6 +243,38 @@ function updateContact()
 }
 
 function updateUIWithContact(contact) {
+    // Get the table body
+    let tableBody = document.querySelector(".project-list-table tbody");
+    // Create a new row
+    let newRow = document.createElement("tr");
+    newRow.innerHTML = `
+        <th scope="row" class="ps-4">
+            <div class="form-check font-size-16">
+                <input type="checkbox" class="form-check-input" id="contacusercheck1" />
+                <label class="form-check-label" for="contacusercheck1"></label>
+            </div>
+        </th>
+        <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">${contact.firstName} ${contact.lastName}</a></td>
+        <td><span class="badge badge-soft-info mb-0">${contact.position}</span></td>
+        <td>${contact.email}</td>
+        <td>${contact.projects}</td>
+        <td>
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item">
+                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
+                </li>
+            </ul>
+        </td>
+    `;
+    // Append the new row to the table
+    tableBody.appendChild(newRow);
+}
+
+
+/*function updateUIWithContact(contact) {
     let tableBody = document.getElementById("contactsTable").getElementsByTagName('tbody')[0];
     let newRow = tableBody.insertRow(tableBody.rows.length);
     newRow.insertCell(0).innerHTML = contact.firstName;
@@ -247,7 +282,7 @@ function updateUIWithContact(contact) {
     newRow.insertCell(2).innerHTML = contact.phone;
     newRow.insertCell(3).innerHTML = contact.email;
     newRow.insertCell(4).innerHTML = contact.userID;
-}
+}*/
 
 
 function loadContacts()
