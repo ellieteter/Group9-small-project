@@ -19,6 +19,7 @@ if ($conn->connect_error) {
 		http_response_code(200);
 		returnWithInfo($row['firstName'], $row['lastName'], $row['ID']);
 	} else {
+		http_response_code(500);
 		returnWithError("No Records Found");
 	}
 
