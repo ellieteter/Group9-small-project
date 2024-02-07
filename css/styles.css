@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
 html,
 
 body {
     height: 100%;
     background-color: #66BCD0;
-    background-image: url('../images/bg4.png');
-    background-position: center center;
+    background-image: url('../images/bg4.jpg');
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: cover;
     margin: 0;
     overflow: hidden;
 }
@@ -49,11 +51,15 @@ body {
 
 #title {
     font-size: 100px;
-    width: 100%;
-    margin: 2% 5%;
     text-align: center;
-    font-family: 'Ubuntu', sans-serif;
-    color: #070709;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #loginDiv {
@@ -96,7 +102,8 @@ body {
 
     margin-left: 10%;
     margin-bottom: 100%;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Poppins', sans-serif;
     background-color: #b84f60;
     /* Set your desired background color */
     color: rgb(5, 5, 5);
@@ -110,7 +117,8 @@ body {
     width: 50%;
     /* margin-left: 40%; */
     margin-left: 15%;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Poppins', sans-serif;
     background-color: #F4B759;
     /* Set your desired background color */
     color: #000000;
@@ -118,44 +126,24 @@ body {
 }
 
 .infoNestButton {
-    /*background-image: url('../images/logo8.png');*/
-    /*mix-blend-mode: normal;*/
-    background-color: #66BCD0;
-    /*margin-left: 5%;*/
+    background-color: #a92474;
     display: inline-block;
-
-
     background-size: cover;
-    /* Adjust the background size property based on your design */
     width: 100px;
-    /* Set the width of the button */
     height: 100px;
-    /* Set the height of the button */
     border: none;
-    /* Remove border if needed */
     margin-bottom: 20px;
-
-
-
 }
-
 
 .loginInfoNestButton {
     background-image: url('../images/logo8.png');
-    /* mix-blend-mode: hard-light; */
     background-color: transparent;
     margin-top: 2%;
-
     margin-left: 5%;
     background-size: cover;
-    /* Adjust the background size property based on your design */
     width: 70px;
-    /* Set the width of the button */
     height: 70px;
-    /* Set the height of the button */
     border: none;
-    /* Remove border if needed */
-    /* Add any additional styling properties */
 }
 
 .buttons:hover {
@@ -203,7 +191,8 @@ input[type="password"] {
 
     text-align: center;
     width: 80%;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Poppins', sans-serif;
 }
 
 #inner-title {
@@ -213,7 +202,8 @@ input[type="password"] {
     text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Poppins', sans-serif;
     color: #070709;
 }
 
@@ -224,7 +214,8 @@ input[type="password"] {
     text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Poppins', sans-serif;
     color: #070709;
 }
 
@@ -245,7 +236,8 @@ select {
     margin-left: 35%;
     margin-top: 2%;
     font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Poppins', sans-serif;
 }
 
 #colorSearchResult {
@@ -260,12 +252,13 @@ select {
     margin-left: 5%;
     margin-top: 2%;
     margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-family: 'Poppins', sans-serif;
     color: #070709;
 }
 
 .bg-custom-color {
-    background-color: #66BCD0;
+    background-color: #002d06;
     /*height: 100px;
     overflow: hidden;*/
 }
