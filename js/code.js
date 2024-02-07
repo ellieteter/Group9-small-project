@@ -172,11 +172,11 @@ function addContact()
 	let lastName = document.getElementById("lastName").value;
 	let phone = document.getElementById("inputPhone").value;
 	let email = document.getElementById("inputEmail").value;
-	let userID = document.getElementById("inputUserID").value;
+	
 
 	document.getElementById("contactAddResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID:userID};
+	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContact.' + extension;
