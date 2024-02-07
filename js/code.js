@@ -59,6 +59,60 @@ function doLogin()
 
 }
 
+// Function to fetch data from the API and update the count
+function updateContactCount() {
+
+	userId = -1;
+	let data = document.cookie;
+	let splits = data.split(",");
+	for(var i = 0; i < splits.length; i++) 
+	{
+		let thisOne = splits[i].trim();
+		let tokens = thisOne.split("=");
+
+		if( tokens[0] == "userId" )
+		{
+			userId = parseInt( tokens[1].trim() );
+		}
+	}
+	
+
+    var tmp = {userId: userId};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/LoadContacts.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				var count = jsonObject.Count;
+		
+				document.getElementById('contactCount').textContent = '(' + count + ')';
+				
+			}
+			
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		console.error('Error fetching data:', err);
+	}
+}
+
+// Call the function initially to load the count
+updateContactCount();
+
+// You can call this function periodically to update the count dynamically
+setInterval(updateContactCount, 5000); // Example: Update every 5 seconds
+
 function doRegister()
 {
 	let firstName = document.getElementById("firstName").value;
