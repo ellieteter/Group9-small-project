@@ -26,46 +26,159 @@
       <div class="form-inner">
         <form action="#" class="login">
           <div class="field">
-            <input type="text" placeholder="Username" required>
+            <!-- id="loginName" for USERNAME-->
+            <input type="text" id="loginName" placeholder="Username" required>
           </div>
           <div class="field">
-            <input type="password" placeholder="Password" required>
+            <!-- id="loginPassword" for PASSWORD-->
+            <input type="password" id="loginPassword" placeholder="Password" required>
           </div>
           <div class="field btn">
             <div class="btn-layer"></div>
-            <input type="submit" value="Login">
+            <!-- LOGIN BUTTON -->
+            <!--
+              FROM PREVIOUS UI:
+                <button class="btn btn-primary w-100 py-2" id="loginButton" class="logInButton" onclick="doLogin();"> Log in
+                </button>
+                <span id="loginResult"></span>
+            -->
+            <input type="submit" id="loginButton" value="Login" onclick="doLogin();">
+            <span id="loginResult"></span>
           </div>
-          <div class="signup-link">Not a member?<a href="">Register now</a></div>
+          <div class="signup-link">Not a member?<a href=""> Register now</a></div>
+          <!-- Break for space -->
+          <br />
+          <br />
+          <p class="course">Spring 2024 - COP4331</p>
         </form>
         <form action="#" class="signup">
           <div class="field">
-            <input type="text" placeholder="First Name" required>
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
           </div>
           <div class="field">
-            <input type="text" placeholder="Last Name" required>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
           </div>
           <div class="field">
-            <input type="text" placeholder="Username" required>
+            <input type="text" id="inputUsername" name="inputUsername" placeholder="Username" required>
           </div>
           <!-- <div class="field">
             <input type="text" placeholder="Email Address" required>
           </div> -->
           <div class="field">
-            <input type="password" placeholder="Password" required>
+            <input type="password" id="inputPassword" name="inputPassword" placeholder="Password" 
+            pattern="(?=.*\d)(?=.*[\W_])(?=.*[A-Z]).{8,20}" title="Must contain at least one number, one special character, one uppercase letter, and 8-20 characters"
+            required>
+          </div>
+          <div id="message">
+            <p class="psv">Password must contain the following:</p>
+            <p id="special" class="invalid"><span class="icon pwvRed">&#10006;</span> A <b>special</b> character</p>
+            <p id="capital" class="invalid"><span class="icon pwvRed">&#10006;</span> A <b>capital (uppercase)</b> letter</p>
+            <p id="number" class="invalid"><span class="icon pwvRed">&#10006;</span> A <b>number</b></p>
+            <p id="length" class="invalid"><span class="icon pwvRed">&#10006;</span> Minimum <b>8 characters</b> and maximum <b>20</b></p>
           </div>
           <!-- <div class="field">
             <input type="password" placeholder="Confirm password" required>
           </div> -->
           <div class="field btn">
             <div class="btn-layer"></div>
-            <input type="submit" value="Signup">
+            <input type="submit" value="Signup" onclick="doRegister();">
+            <span id="registerResult"></span>
           </div>
         </form>
       </div>
     </div>
   </div>
-</body>
-</html>
+
+  <!-- Password Validator-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var myInput = document.getElementById("inputPassword");
+      var messageBox = document.getElementById("message");
+      var special = document.getElementById("special");
+      var capital = document.getElementById("capital");
+      var number = document.getElementById("number");
+      var length = document.getElementById("length");
+      var s = false;
+      var c = false;
+      var n = false;
+      var l = false;
+  
+      // Initially hide the message box
+      messageBox.style.display = "none";
+  
+      // When the user clicks on the password field, show the message box
+      myInput.onfocus = function() {
+        messageBox.style.display = "block";
+      };
+  
+      // When the user clicks outside of the password field, hide the message box
+      myInput.onblur = function() {
+        messageBox.style.display = "none";
+      };
+  
+      // When the user starts to type something inside the password field
+      myInput.onkeyup = function() {
+        // Validate special characters
+        var specialCharacter = /[\W_]/;
+        if(myInput.value.match(specialCharacter)) {
+          special.classList.remove("invalid");
+          special.classList.add("valid");
+          s = true;
+          special.innerHTML = '<span class="icon pwvGreen">&#10004;</span> A <b>special</b> character';
+        } else {
+          special.classList.remove("valid");
+          special.classList.add("invalid");
+          s = false;
+          special.innerHTML = '<span class="icon pwvRed">&#10006;</span> A <b>special</b> character';
+        }
+  
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/;
+        if(myInput.value.match(upperCaseLetters)) {
+          capital.classList.remove("invalid");
+          capital.classList.add("valid");
+          c = true;
+          capital.innerHTML = '<span class="icon pwvGreen">&#10004;</span> A <b>capital (uppercase)</b> letter';
+        } else {
+          capital.classList.remove("valid");
+          capital.classList.add("invalid");
+          c = false;
+          capital.innerHTML = '<span class="icon pwvRed">&#10006;</span> A <b>capital (uppercase)</b> letter';
+        }
+  
+        // Validate numbers
+        var numbers = /[0-9]/;
+        if(myInput.value.match(numbers)) {
+          number.classList.remove("invalid");
+          number.classList.add("valid");
+          n = true;
+          number.innerHTML = '<span class="icon pwvGreen">&#10004;</span> A <b>number</b>';
+        } else {
+          number.classList.remove("valid");
+          number.classList.add("invalid");
+          n = false;
+          number.innerHTML = '<span class="icon pwvRed">&#10006;</span> A <b>number</b>';
+        }
+  
+        // Validate length
+        if(myInput.value.length >= 8 && myInput.value.length <= 20) {
+          length.classList.remove("invalid");
+          length.classList.add("valid");
+          l = true;
+          length.innerHTML = '<span class="icon pwvGreen">&#10004;</span> Minimum <b>8 characters</b> and maximum <b>20</b>';
+        } else {
+          length.classList.remove("valid");
+          length.classList.add("invalid");
+          l = false;
+          length.innerHTML = '<span class="icon pwvRed">&#10006;</span> Minimum <b>8 characters</b> and maximum <b>20</b>';
+        }
+        return s && c && n && l;
+      };
+  
+    });
+  </script>
+  </body>
+  </html>
 
   <!-- <style>
     .bd-placeholder-img {

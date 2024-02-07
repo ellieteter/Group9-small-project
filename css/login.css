@@ -214,3 +214,23 @@ form .btn input[type="submit"]{
   font-weight: 500;
   cursor: pointer;
 }
+
+/* Change font size */
+.course {
+    font-size: 12px; 
+}
+
+/* Change font size (for password validation) */
+.pwv {
+    font-size: 15px; 
+}
+
+/* Change color (for password validation) */
+.pwvGreen {
+    color: green; 
+}
+
+/* Change color (for password validation) */
+.pwvRed {
+    color: red; 
+}
