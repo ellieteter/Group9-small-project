@@ -25,6 +25,7 @@ if ($conn->connect_error) {
 
     if ($stmt->affected_rows > 0) {
         http_response_code(200);
+        returnWithError("");
     } else {
         http_response_code(500);
         returnWithError("Couldn't Delete From Users");
