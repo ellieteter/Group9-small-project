@@ -17,8 +17,9 @@ if ($conn->connect_error) {
     $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $userID);
     $stmt->execute();
 
-    if ($stmt->num_rows > 0) {
+    if ($conn->affected_rows > 0) {
         http_response_code(200);
+        returnWithError("");
     } else {
         http_response_code(500);
         returnWithError("Couldn't add Contact");
@@ -26,7 +27,6 @@ if ($conn->connect_error) {
 
     $stmt->close();
     $conn->close();
-    returnWithError("");
 }
 function getRequestInfo()
 {
