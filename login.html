@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InfoNest Login</title>
-  <link rel="stylesheet" href="css/login.css"/>
-  <script type="text/javascript" src="js/code.js"></script>
-  <script type="text/javascript" src="js/md5.js"></script>
+  <link rel="stylesheet" href="css/login.css" />
+  <script defer type="text/javascript" src="js/code.js"></script>
+  <script defer type="text/javascript" src="js/md5.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap' rel='stylesheet'>
 </head>
+
 <body>
   <div class="wrapper">
     <div class="title-text">
@@ -69,17 +71,20 @@
             <input type="text" placeholder="Email Address" required>
           </div> -->
           <div class="field">
-            <input type="password" id="inputPassword" name="inputPassword" placeholder="Password" 
-            pattern="(?=.*\d)(?=.*[\W_])(?=.*[A-Z]).{8,20}" title="Must contain at least one number, one special character, one uppercase letter, and 8-20 characters"
-            required>
+            <input type="password" id="inputPassword" name="inputPassword" placeholder="Password"
+              pattern="(?=.*\d)(?=.*[\W_])(?=.*[A-Z]).{8,20}"
+              title="Must contain at least one number, one special character, one uppercase letter, and 8-20 characters"
+              required>
           </div>
           <div id="message">
             <br>
             <p class="psv">Password must contain the following:</p>
             <p id="special" class="invalid"><span class="icon pwvRed">&#10006;</span> A <b>special</b> character</p>
-            <p id="capital" class="invalid"><span class="icon pwvRed">&#10006;</span> A <b>capital (uppercase)</b> letter</p>
+            <p id="capital" class="invalid"><span class="icon pwvRed">&#10006;</span> A <b>capital (uppercase)</b>
+              letter</p>
             <p id="number" class="invalid"><span class="icon pwvRed">&#10006;</span> A <b>number</b></p>
-            <p id="length" class="invalid"><span class="icon pwvRed">&#10006;</span> Minimum <b>8 characters</b> and maximum <b>20</b></p>
+            <p id="length" class="invalid"><span class="icon pwvRed">&#10006;</span> Minimum <b>8 characters</b> and
+              maximum <b>20</b></p>
           </div>
           <!-- <div class="field">
             <input type="password" placeholder="Confirm password" required>
@@ -96,7 +101,7 @@
 
   <!-- Password Validator-->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       var myInput = document.getElementById("inputPassword");
       var messageBox = document.getElementById("message");
       var special = document.getElementById("special");
@@ -107,25 +112,25 @@
       var c = false;
       var n = false;
       var l = false;
-  
+
       // Initially hide the message box
       messageBox.style.display = "none";
-  
+
       // When the user clicks on the password field, show the message box
-      myInput.onfocus = function() {
+      myInput.onfocus = function () {
         messageBox.style.display = "block";
       };
-  
+
       // When the user clicks outside of the password field, hide the message box
-      myInput.onblur = function() {
+      myInput.onblur = function () {
         messageBox.style.display = "none";
       };
-  
+
       // When the user starts to type something inside the password field
-      myInput.onkeyup = function() {
+      myInput.onkeyup = function () {
         // Validate special characters
         var specialCharacter = /[\W_]/;
-        if(myInput.value.match(specialCharacter)) {
+        if (myInput.value.match(specialCharacter)) {
           special.classList.remove("invalid");
           special.classList.add("valid");
           s = true;
@@ -136,10 +141,10 @@
           s = false;
           special.innerHTML = '<span class="icon pwvRed">&#10006;</span> A <b>special</b> character';
         }
-  
+
         // Validate capital letters
         var upperCaseLetters = /[A-Z]/;
-        if(myInput.value.match(upperCaseLetters)) {
+        if (myInput.value.match(upperCaseLetters)) {
           capital.classList.remove("invalid");
           capital.classList.add("valid");
           c = true;
@@ -150,10 +155,10 @@
           c = false;
           capital.innerHTML = '<span class="icon pwvRed">&#10006;</span> A <b>capital (uppercase)</b> letter';
         }
-  
+
         // Validate numbers
         var numbers = /[0-9]/;
-        if(myInput.value.match(numbers)) {
+        if (myInput.value.match(numbers)) {
           number.classList.remove("invalid");
           number.classList.add("valid");
           n = true;
@@ -164,9 +169,9 @@
           n = false;
           number.innerHTML = '<span class="icon pwvRed">&#10006;</span> A <b>number</b>';
         }
-  
+
         // Validate length
-        if(myInput.value.length >= 8 && myInput.value.length <= 20) {
+        if (myInput.value.length >= 8 && myInput.value.length <= 20) {
           length.classList.remove("invalid");
           length.classList.add("valid");
           l = true;
@@ -179,8 +184,9 @@
         }
         return s && c && n && l;
       };
-  
+
     });
   </script>
-  </body>
-  </html>
+</body>
+
+</html>
