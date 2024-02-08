@@ -274,7 +274,7 @@ function updateContactCount() {
 				let jsonObject = JSON.parse( xhr.responseText );
 				var count = jsonObject.Count;
 		
-				document.getElementById('contactCount').textContent = '(' + data.Count + ')';
+				document.getElementById('contactCount').textContent = '(' + count + ')';
 			}
 			
 		};
