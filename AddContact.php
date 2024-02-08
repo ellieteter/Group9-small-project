@@ -21,7 +21,7 @@ if ($conn->connect_error) {
         http_response_code(200);
         returnWithError("");
     } else {
-        http_response_code(500);
+        http_response_code(409);
         returnWithError("Couldn't add Contact");
     }
 

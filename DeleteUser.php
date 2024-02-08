@@ -18,11 +18,11 @@ if ($conn->connect_error) {
     $stmt->bind_param("s", $userId);
     $stmt->execute();
 
-    if ($stmt->affected_rows > 0) {
+    if ($conn->affected_rows > 0) {
         http_response_code(200);
         returnWithError("");
     } else {
-        http_response_code(500);
+        http_response_code(409);
         returnWithError("Couldn't Delete From Users");
     }
 

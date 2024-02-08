@@ -43,7 +43,7 @@ function doLogin()
 				window.location.href = "contacts.html";
 			}
 
-			else if(this.status == 500)
+			else if(this.status == 409)
 				{		
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
 					return;
