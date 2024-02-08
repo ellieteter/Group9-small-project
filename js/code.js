@@ -34,12 +34,6 @@ function doLogin()
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
 		
-				if( userId < 1 )
-				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-					return;
-				}
-		
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
@@ -48,6 +42,12 @@ function doLogin()
 				
 				window.location.href = "contacts.html";
 			}
+
+			else if(this.status == 409)
+				{		
+					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					return;
+				}
 			
 		};
 		xhr.send(jsonPayload);
@@ -188,13 +188,12 @@ function addContact()
 	{
 		xhr.onreadystatechange = function() 
 		{
-			console.log("Ready state:", this.readyState);
-    		console.log("Status:", this.status);
+			
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 				console.log("Contact added successfully:", tmp);
-				updateUIWithContact(tmp)
+				updateUIWithContact(tmp);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -212,11 +211,11 @@ function updateContact()
 	let lastName = document.getElementById("lastName").value;
 	let phone = document.getElementById("inputPhone").value;
 	let email = document.getElementById("inputEmail").value;
-	let userID = document.getElementById("inputUserID").value;
+	
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID,userID};
+	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/UpdateContact.' + extension;
@@ -242,6 +241,55 @@ function updateContact()
 	
 }
 
+function updateContactCount() {
+
+	let data = document.cookie;
+	let splits = data.split(",");
+	for(var i = 0; i < splits.length; i++) 
+	{
+		let thisOne = splits[i].trim();
+		let tokens = thisOne.split("=");
+		
+		if( tokens[0] == "userId" )
+		{
+			userId = parseInt( tokens[1].trim() );
+		}
+	}
+
+	var tmp = {userId: userId};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/LoadContacts.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				var count = jsonObject.Count;
+		
+				document.getElementById('contactCount').textContent = '(' + count + ')';
+			}
+			
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		console.error('Error fetching data:', err);
+	}
+}
+
+// Call the function initially to load the count
+updateContactCount();
+
+setInterval(updateContactCount, 5000);
+
 function updateUIWithContact(contact) {
     // Get the table body
     let tableBody = document.querySelector(".project-list-table tbody");
@@ -254,10 +302,11 @@ function updateUIWithContact(contact) {
                 <label class="form-check-label" for="contacusercheck1"></label>
             </div>
         </th>
-        <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">${contact.firstName} ${contact.lastName}</a></td>
-        <td><span class="badge badge-soft-info mb-0">${contact.position}</span></td>
+        <td>${contact.firstName} </td>
+		<td>${contact.lastName}</td>
+        <td><span class="badge badge-soft-info mb-0">${contact.phone}</span></td>
+        
         <td>${contact.email}</td>
-        <td>${contact.projects}</td>
         <td>
             <ul class="list-inline mb-0">
                 <li class="list-inline-item">
@@ -273,16 +322,6 @@ function updateUIWithContact(contact) {
     tableBody.appendChild(newRow);
 }
 
-
-/*function updateUIWithContact(contact) {
-    let tableBody = document.getElementById("contactsTable").getElementsByTagName('tbody')[0];
-    let newRow = tableBody.insertRow(tableBody.rows.length);
-    newRow.insertCell(0).innerHTML = contact.firstName;
-    newRow.insertCell(1).innerHTML = contact.lastName;
-    newRow.insertCell(2).innerHTML = contact.phone;
-    newRow.insertCell(3).innerHTML = contact.email;
-    newRow.insertCell(4).innerHTML = contact.userID;
-}*/
 
 
 function loadContacts()
@@ -320,9 +359,33 @@ function loadContacts()
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
-
-
 }
+
+// ================ For login ------------------------
+document.addEventListener("DOMContentLoaded", function()
+{
+	const loginText = document.querySelector(".title-text .login");
+	const loginForm = document.querySelector("form.login");
+	const loginBtn = document.querySelector("label.login");
+	const signupBtn = document.querySelector("label.signup");
+	const signupLink = document.querySelector("form .signup-link a");
+	
+	signupBtn.onclick = (()=>{
+	  loginForm.style.marginLeft = "-50%";
+	  loginText.style.marginLeft = "-50%";
+	});
+	
+	loginBtn.onclick = (()=>{
+	  loginForm.style.marginLeft = "0%";
+	  loginText.style.marginLeft = "0%";
+	});
+	
+	signupLink.onclick = (()=>{
+	  signupBtn.click();
+	  return false;
+	});
+});
+
 
 /*
 function searchColor()
