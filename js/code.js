@@ -242,6 +242,62 @@ function updateContact()
 	
 }
 
+function updateContactCount() {
+
+	let data = document.cookie;
+	let splits = data.split(",");
+	for(var i = 0; i < splits.length; i++) 
+	{
+		let thisOne = splits[i].trim();
+		let tokens = thisOne.split("=");
+		if( tokens[0] == "firstName" )
+		{
+			firstName = tokens[1];
+		}
+		else if( tokens[0] == "lastName" )
+		{
+			lastName = tokens[1];
+		}
+		else if( tokens[0] == "userId" )
+		{
+			userId = parseInt( tokens[1].trim() );
+		}
+	}
+
+	var tmp = {userId: userId};
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/LoadContacts.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				var count = jsonObject.Count;
+		
+				document.getElementById('contactCount').textContent = '(' + data.Count + ')';
+			}
+			
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		console.error('Error fetching data:', err);
+	}
+}
+
+// Call the function initially to load the count
+updateContactCount();
+
+setInterval(updateContactCount, 5000);
+
 function updateUIWithContact(contact) {
     // Get the table body
     let tableBody = document.querySelector(".project-list-table tbody");
