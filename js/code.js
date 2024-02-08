@@ -34,12 +34,6 @@ function doLogin()
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
 		
-				if( userId < 1 )
-				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-					return;
-				}
-		
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
 
@@ -48,6 +42,12 @@ function doLogin()
 				
 				window.location.href = "contacts.html";
 			}
+
+			else if(this.status == 500)
+				{		
+					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+					return;
+				}
 			
 		};
 		xhr.send(jsonPayload);
