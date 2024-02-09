@@ -200,15 +200,29 @@ function addContact()
 
 function editRow(jsonObject, i)
 {
+	userID;
+	let data = document.cookie;
+	let splits = data.split(",");
+	for(var i = 0; i < splits.length; i++) 
+	{
+		let thisOne = splits[i].trim();
+		let tokens = thisOne.split("=");
+	
+		if( tokens[0] == "userId" )
+		{
+			userId = parseInt( tokens[1].trim() );
+		}
+	}
+
 	let firstName = jsonObject.results[i].FirstName;
     let lastName = jsonObject.results[i].LastName;
 	let phone = jsonObject.results[i].Phone;
     let email = jsonObject.results[i].Email;
-	let userID = jsonObject.results[i].userID
+
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID:userId};
+	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userId:userID};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/UpdateContact.' + extension;
@@ -404,7 +418,7 @@ function deleteRow(jsonObject, i)
     let email = jsonObject.results[i].Email;
 	let userID = jsonObject.results[i].userID
 	
-	var tmp = {firstName: firstName, lastName: lastName, phone:phone, email:email, userID:userId};
+	var tmp = {firstName: firstName, lastName: lastName, phone:phone, email:email, userId:userID};
 	
 	let jsonPayload = JSON.stringify( tmp );
 	
