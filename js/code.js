@@ -223,6 +223,8 @@ function updateContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
+				console.log("Contact updated successfully:", tmp);
+				updateUIWithContact(tmp);
 			}
 		};
 		xhr.send(jsonPayload);
