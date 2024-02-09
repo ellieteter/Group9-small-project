@@ -268,6 +268,10 @@ function updateContactCount() {
 		
 				document.getElementById('contactCount').textContent = '(' + count + ')';
 			}
+			else if(this.status == 409)
+			{
+				document.getElementById('contactCount').textContent = '(' + 0 + ')';
+			}
 			
 		};
 		xhr.send(jsonPayload);
