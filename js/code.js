@@ -270,7 +270,7 @@ function updateContactCount() {
 			}
 			else if(this.status == 409)
 			{
-				document.getElementById('contactCount').textContent = '0';
+				document.getElementById('contactCount').textContent = '(0)';
 			}
 			
 		};
