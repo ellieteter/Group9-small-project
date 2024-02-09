@@ -198,13 +198,13 @@ function addContact()
 	
 }
 
-function updateContact()
+function editRow(jsonObject, i)
 {
-	let firstName = document.getElementById("firstName").value;
-	let lastName = document.getElementById("lastName").value;
-	let phone = document.getElementById("inputPhone").value;
-	let email = document.getElementById("inputEmail").value;
-	
+	let firstName = jsonObject.results[i].FirstName;
+    let lastName = jsonObject.results[i].LastName;
+	let phone = jsonObject.results[i].Phone;
+    let email = jsonObject.results[i].Email;
+	let userID = jsonObject.results[i].userID
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 
@@ -223,6 +223,7 @@ function updateContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
+				loadContacts();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -419,7 +420,6 @@ function deleteRow(jsonObject, i)
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-			
 				loadContacts();
 			}
 
