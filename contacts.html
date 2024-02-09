@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<html>
+<!--<html>-->
 
 <head>
     <meta charset="UTF-8">
@@ -15,8 +15,8 @@
 
 </head>
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+<body> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
     integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet"
@@ -27,7 +27,7 @@
         window.onload = function() {
           loadContacts();
         };
-      </script>
+    </script>
 
 
 <div class="container">
@@ -47,7 +47,7 @@
                             <div class="d-flex">
                                 <input class="form-control me-2" type="search" id="searchInput" name="search"
                                     placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
+                                <button class="btn btn-outline-success search-button" type="submit">Search</button>
                             </div>
                         </li>
                     </ul>
@@ -115,11 +115,7 @@
                     <table class="table project-list-table table-nowrap align-middle table-borderless">
                         <thead>
                             <tr>
-                                <th scope="col" class="ps-4" style="width: 50px;">
-                                    <div class="form-check font-size-16"><input type="checkbox" class="form-check-input"
-                                            id="contacusercheck" /><label class="form-check-label"
-                                            for="contacusercheck"></label></div>
-                                </th>
+                                
                                 <th scope="col">First Name</th>
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Phone</th>
@@ -128,31 +124,7 @@
                             </tr>
                         </thead>
                         <tbody id="contactsTableBody">
-                            <tr>
-                                <th scope="row" class="ps-4">
-                                    <div class="form-check font-size-16"><input type="checkbox" class="form-check-input"
-                                            id="contacusercheck1" /><label class="form-check-label"
-                                            for="contacusercheck1"></label></div>
-                                </th>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td><span class="badge badge-soft-success mb-0">111-111-1111</span></td>
-                                <td>SimonRyles@minible.com</td>
-                                <td>
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
-                                                    class="bx bx-pencil font-size-18"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Delete" class="px-2 text-danger"><i
-                                                    class="bx bx-trash-alt font-size-18"></i></a>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
+                           
                         </tbody>
                     </table>
                 </div>
@@ -272,127 +244,25 @@
     .bg-soft-primary {
         background-color: rgba(59, 118, 225, .25) !important;
     }
+
+    .btn-outline-success.search-button {
+        background-color: blue;
+        border-color: blue;
+        color: white; /* Optionally change the text color */
+    }
 </style>
 
-
-<!--<body>
-
-    <div id = "body">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">
-            Add Contact
-        </button>
-        <table class="table" id = "TTable">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Email Address</th>
-                    <th scope="col">UserID</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>123-456-7890</td>
-                    <td>john.doe@example.com</td>
-                    <td>123</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>-->
-
-
-<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">
-        Add Contact
-    </button>
-    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contactModalLabel">Add Contact</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                     Your input groups go here
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">First Name</span>
-                        <input type="text" class="form-control" placeholder="firstName" aria-label="First Name" aria-describedby="basic-addon1"id="firstName">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Last Name</span>
-                        <input type="text" class="form-control" placeholder="lastName" aria-label="Last Name" aria-describedby="basic-addon1"id="lastName">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Phone Number</span>
-                        <input type="text" class="form-control" placeholder="phone" aria-label="xxx-xxx-xxxx" aria-describedby="basic-addon1"id="inputPhone">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Email Address</span>
-                        <input type="text" class="form-control" placeholder="email" aria-label="email" aria-describedby="basic-addon1"id="inputEmail">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">UserID</span>
-                        <input type="text" class="form-control" placeholder="userID" aria-label="userID" aria-describedby="basic-addon1"id="inputUserID">
-                    </div>
-                   
-                </div>
-                <div class="modal-footer mx-auto" >
-                    <button type="button" class="btn btn-primary" onclick="addContact();">Add Contact</button> 
-                    <span id="contactAddResult"></span>
-                </div>
-            </div>
-        </div>
-    </div>-->
-
+<script>
+    window.onload = function() {
+      loadContacts();
+    };
+</script>
 
 
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'></script>
-<!-- <div class="container mt-5">
-        <div class="mx-auto" style="width: 300px;">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">First Name</span>
-                <input type="text" class="form-control" placeholder="firstName" aria-label="First Name" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Last Name</span>
-                <input type="text" class="form-control" placeholder="lastName" aria-label="Last Name" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Phone Number</span>
-                <input type="text" class="form-control" placeholder="phone" aria-label="xxx-xxx-xxxx" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Email Address</span>
-                <input type="text" class="form-control" placeholder="email" aria-label="email" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">UserID</span>
-                <input type="text" class="form-control" placeholder="userID" aria-label="userID" aria-describedby="basic-addon1">
-            </div>
-        </div>
-    </div>-->
 
 
 
-
-
-
-
-<!-- <div class = "search">
-        <input type = "text" placeholder="search...">
-        <button type="button" class="button" onclick="window.location.href="
-
-    </div>
-	
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-	
-
-</body>-->
+</body>
 
 </html>
