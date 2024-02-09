@@ -4,6 +4,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+const ids = []
 
 function doLogin()
 {
@@ -156,6 +157,7 @@ function readCookie()
 	}
 }
 
+
 function addContact()
 {
 	console.log(document.getElementById("firstName"));
@@ -163,11 +165,11 @@ function addContact()
 	let lastName = document.getElementById("lastName").value;
 	let phone = document.getElementById("inputPhone").value;
 	let email = document.getElementById("inputEmail").value;
-	let userID = document.getElementById("inputUserID").value;
+	
 
 	document.getElementById("contactAddResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID:userID};
+	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContact.' + extension;
@@ -179,13 +181,12 @@ function addContact()
 	{
 		xhr.onreadystatechange = function() 
 		{
-			console.log("Ready state:", this.readyState);
-    		console.log("Status:", this.status);
+			
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 				console.log("Contact added successfully:", tmp);
-				updateUIWithContact(tmp)
+				updateUIWithContact(tmp);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -203,11 +204,11 @@ function updateContact()
 	let lastName = document.getElementById("lastName").value;
 	let phone = document.getElementById("inputPhone").value;
 	let email = document.getElementById("inputEmail").value;
-	let userID = document.getElementById("inputUserID").value;
+	
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID,userID};
+	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/UpdateContact.' + extension;
@@ -282,6 +283,8 @@ updateContactCount();
 
 setInterval(updateContactCount, 5000);
 
+
+
 function updateUIWithContact(contact) {
     // Get the table body
     let tableBody = document.querySelector(".project-list-table tbody");
@@ -294,10 +297,11 @@ function updateUIWithContact(contact) {
                 <label class="form-check-label" for="contacusercheck1"></label>
             </div>
         </th>
-        <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">${contact.firstName} ${contact.lastName}</a></td>
-        <td><span class="badge badge-soft-info mb-0">${contact.position}</span></td>
+        <td>${contact.firstName} </td>
+		<td>${contact.lastName}</td>
+        <td><span class="badge badge-soft-info mb-0">${contact.phone}</span></td>
+        
         <td>${contact.email}</td>
-        <td>${contact.projects}</td>
         <td>
             <ul class="list-inline mb-0">
                 <li class="list-inline-item">
@@ -314,53 +318,56 @@ function updateUIWithContact(contact) {
 }
 
 
-/*function updateUIWithContact(contact) {
-    let tableBody = document.getElementById("contactsTable").getElementsByTagName('tbody')[0];
-    let newRow = tableBody.insertRow(tableBody.rows.length);
-    newRow.insertCell(0).innerHTML = contact.firstName;
-    newRow.insertCell(1).innerHTML = contact.lastName;
-    newRow.insertCell(2).innerHTML = contact.phone;
-    newRow.insertCell(3).innerHTML = contact.email;
-    newRow.insertCell(4).innerHTML = contact.userID;
-}*/
-
 
 function loadContacts()
 {
 
-	let firstName = document.getElementById("firstName").value;
-	let lastName = document.getElementById("lastName").value;
-	let phone = document.getElementById("inputPhone").value;
-	let email = document.getElementById("inputEmail").value;
-	let userID = document.getElementById("inputUserID").value;
-
-	document.getElementById("contactAddResult").innerHTML = "";
-
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID,userID};
+	let tmp = {userId,userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/SearchContact.' + extension;
+	let url = urlBase + '/LoadContacts.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+	
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                if (jsonObject.error) {
+                    console.log(jsonObject.error);
+                    return;
+                }
+                let text = "<table border='1'>"
 				
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactAddResult").innerHTML = err.message;
-	}
+                for (let i = 0; i < jsonObject.results.length; i++) {
+					
+					ids[i] = jsonObject.results[i].userId;
+					text += "<tr id='row" + i + "'>";
+					text += "<td><div class='form-check font-size-16'><input type='checkbox' class='form-check-input' id='contacusercheck" + i + "' /><label class='form-check-label' for='contacusercheck" + i + "'></label></div></td>";
+					text += "<td>" + jsonObject.results[i].FirstName + "</td>";
+					text += "<td>" + jsonObject.results[i].LastName + "</td>";
+					text += "<td><span class='badge badge-soft-success mb-0'>" + jsonObject.results[i].Phone + "</span></td>";
+					text += "<td>" + jsonObject.results[i].Email + "</td>";
+					text += "<td>";
+					text += "<ul class='list-inline mb-0'>";
+					text += "<li class='list-inline-item'><a href='javascript:void(0);' data-bs-toggle='tooltip' data-bs-placement='top' title='Edit' class='px-2 text-primary'><i class='bx bx-pencil font-size-18'></i></a></li>";
+					text += "<li class='list-inline-item'><a href='javascript:void(0);' data-bs-toggle='tooltip' data-bs-placement='top' title='Delete' class='px-2 text-danger'><i class='bx bx-trash-alt font-size-18'></i></a></li>";
+					text += "</ul>";
+					text += "</td>";
+					text += "</tr>";
+				}
+				text += "</table>";
+				document.getElementById("contactsTableBody").innerHTML = text;
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        console.log(err.message);
+    }
 }
+
 
 // ================ For login ------------------------
 document.addEventListener("DOMContentLoaded", function()
