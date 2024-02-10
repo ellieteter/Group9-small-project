@@ -411,7 +411,7 @@ function editRow(jsonObject, i) {
 
 
     // Update contact function
-    window.updateContact = function() {
+    updateContact = function() {
         let newFirstName = document.getElementById("edit_first").value;
         let newLastName = document.getElementById("edit_last").value;
         let newPhone = document.getElementById("edit_phone").value;
@@ -429,7 +429,8 @@ function editRow(jsonObject, i) {
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
-                    location.reload();
+                    loadContacts();
+					location.reload();
                 }
             };
             xhr.send(jsonPayload);
