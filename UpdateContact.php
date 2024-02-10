@@ -13,13 +13,13 @@ if ($conn->connect_error) {
 
     if ($conn->affected_rows > 0) {
         http_response_code(200);
+        returnWithError("");
     } else {
         http_response_code(409);
         returnWithError("Couldn't Update Contact");
     }
     $stmt->close();
     $conn->close();
-    returnWithError("");
 }
 function getRequestInfo()
 {
