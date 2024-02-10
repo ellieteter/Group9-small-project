@@ -67,15 +67,6 @@ function doRegister()
 	let username = document.getElementById("inputUsername").value;
 	let password = document.getElementById("inputPassword").value;
 
-	let passwordPattern = new RegExp('(?=.*\\d)(?=.*[\\W_])(?=.*[A-Z]).{8,20}');
-
-	
-	// Check if the password matches the pattern
-	if (!passwordPattern.test(password)) {
-		document.getElementById("registerResult").innerHTML = "Password does not meet the required criteria.";
-		return; 
-	}
-
 	var hash = md5( password );
 	
 	document.getElementById("registerResult").innerHTML = "";
@@ -359,45 +350,23 @@ function editRow(jsonObject, i)
 		}
 	}*/
 
-	let firstName = jsonObject.results[i].FirstName;
-    let lastName = jsonObject.results[i].LastName;
+
+	let firstNameI = jsonObject.results[i].FirstName;
+    let lastNameI = jsonObject.results[i].LastName;
 	let phone = jsonObject.results[i].Phone;
     let email = jsonObject.results[i].Email;
 	let userId = jsonObject.results[i].userID
-	// Create input fields for editing
-    let firstNameInput = document.createElement("input");
-    firstNameInput.type = "text";
-    firstNameInput.value = firstName;
-    firstNameInput.id = "editFirstName";
 
-    let lastNameInput = document.createElement("input");
-    lastNameInput.type = "text";
-    lastNameInput.value = lastName;
-    lastNameInput.id = "editLastName";
+	var namef_data = firstNameI.innerText;
+    var namel_data = lastNameI.innerText;
+    var email_data = email.innerText;
+    var phone_data = phone.innerText;
 
-    let phoneInput = document.createElement("input");
-    phoneInput.type = "text";
-    phoneInput.value = phone;
-    phoneInput.id = "editPhone";
-
-    let emailInput = document.createElement("input");
-    emailInput.type = "email";
-    emailInput.value = email;
-    emailInput.id = "editEmail";
-
-    // Replace text with input fields for editing
-    document.getElementById("firstName_" + i).innerHTML = "";
-    document.getElementById("firstName_" + i).appendChild(firstNameInput);
-
-    document.getElementById("lastName_" + i).innerHTML = "";
-    document.getElementById("lastName_" + i).appendChild(lastNameInput);
-
-    document.getElementById("phone_" + i).innerHTML = "";
-    document.getElementById("phone_" + i).appendChild(phoneInput);
-
-    document.getElementById("email_" + i).innerHTML = "";
-    document.getElementById("email_" + i).appendChild(emailInput);
-
+    // Replace the inner HTML with input fields containing the current values
+    firstNameI.innerHTML = "<input type='text' id='namef_text" + id + "' value='" + namef_data + "'>";
+    lastNameI.innerHTML = "<input type='text' id='namel_text" + id + "' value='" + namel_data + "'>";
+    email.innerHTML = "<input type='text' id='email_text" + id + "' value='" + email_data + "'>";
+    phone.innerHTML = "<input type='text' id='phone_text" + id + "' value='" + phone_data + "'>";
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 
@@ -462,7 +431,7 @@ function deleteRow(jsonObject, i)
     let email = jsonObject.results[i].Email;
 	let userID = jsonObject.results[i].userID
 	
-	var tmp = {firstName: firstName, lastName: lastName, phone:phone, email:email, userId:userID};
+	var tmp = {firstName: firstName, lastName: lastName, phone:phone, email:email, userID:userID};
 	
 	let jsonPayload = JSON.stringify( tmp );
 	
