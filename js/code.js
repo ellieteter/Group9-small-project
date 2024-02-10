@@ -213,29 +213,29 @@ function validateContactForm() {
 
 
 function validateUpdateContactForm() {
-    let firstName = document.getElementById("edit_first");
-    let lastName = document.getElementById("edit_last");
-    let inputPhone = document.getElementById("edit_phone");
-    let inputEmail = document.getElementById("edit_email");
+    let upfirstName = document.getElementById("edit_first");
+    let uplastName = document.getElementById("edit_last");
+    let upinputPhone = document.getElementById("edit_phone");
+    let upinputEmail = document.getElementById("edit_email");
 
     let phonePattern = new RegExp("^[0-9]{3}-[0-9]{3}-[0-9]{4}$");
     let emailPattern = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
 
     let validationMessages = [];
 
-    if (!firstName.value.trim()) {
+    if (!upfirstName.value.trim()) {
         validationMessages.push("First Name is required.");
     }
 
-    if (!lastName.value.trim()) {
+    if (!uplastName.value.trim()) {
         validationMessages.push("Last Name is required.");
     }
 
-    if (!phonePattern.test(inputPhone.value)) {
+    if (!phonePattern.test(upinputPhone.value)) {
         validationMessages.push("Phone Number must be in the format ###-###-####.");
     }
 
-    if (!emailPattern.test(inputEmail.value)) {
+    if (!emailPattern.test(upinputEmail.value)) {
         validationMessages.push("Please enter a valid Email Address.");
     }
 
