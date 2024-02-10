@@ -162,6 +162,50 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="EditcontactModal" tabindex="-1" aria-labelledby="EditcontactModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EditcontactModalLabel">Update Contact</h5>
+                    <button type="button" id="editcon_close" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Update Your Contact Here
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="edit_first"></span>
+                        <input type="text" class="form-control" placeholder="First Name" aria-label="First Name"
+                            aria-describedby="basic-editon1" id="firstName" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="edit_last"></span>
+                        <input type="text" class="form-control" placeholder="Last Name" aria-label="Last Name"
+                            aria-describedby="basic-editon1" id="lastName" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="edit_phone"></span>
+                        <input type="text" class="form-control" placeholder="Phone Number" aria-label="xxx-xxx-xxxx"
+                            aria-describedby="basic-editon1" id="inputPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                            title="Please follow the ###-###-#### format" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="edit_email"></span>
+                        <input type="email" class="form-control" placeholder="Email Address" aria-label="email"
+                            aria-describedby="basic-addon1" id="inputEmail"
+                            title="Please make sure it is a valid email format example@gmail.com" required
+                            style="text-align: center;">
+                    </div>
+                </div>
+                <div class="modal-footer mx-auto">
+                    <button type="button" class="btn btn-primary" onclick="updateContact();">Update Contact</button>
+                    <span id="contactAddResult"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <style>
         body {
             margin-top: 20px;

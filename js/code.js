@@ -395,78 +395,60 @@ function loadContacts()
     }
 }
 
-function editRow(jsonObject, i)
-{
-
-	let firstName = jsonObject.results[i].FirstName;
+function editRow(jsonObject, i) {
+    let firstName = jsonObject.results[i].FirstName;
     let lastName = jsonObject.results[i].LastName;
-	let phone = jsonObject.results[i].Phone;
+    let phone = jsonObject.results[i].Phone;
     let email = jsonObject.results[i].Email;
-	let userId = jsonObject.results[i].userID
-	// Create input fields for editing
-    let firstNameInput = document.createElement("input");
-    firstNameInput.type = "text";
-    firstNameInput.value = firstName;
-    firstNameInput.id = "editFirstName";
+    let userId = jsonObject.results[i].userID;
 
-    let lastNameInput = document.createElement("input");
-    lastNameInput.type = "text";
-    lastNameInput.value = lastName;
-    lastNameInput.id = "editLastName";
+    // Set the values of modal fields
+    document.getElementById("edit_first").textContent = firstName;
+    document.getElementById("edit_last").textContent = lastName;
+    document.getElementById("edit_phone").textContent = phone;
+    document.getElementById("edit_email").textContent = email;
 
-    let phoneInput = document.createElement("input");
-    phoneInput.type = "text";
-    phoneInput.value = phone;
-    phoneInput.id = "editPhone";
+    // Show modal
+    $('#EditcontactModal').modal('show');
 
-    let emailInput = document.createElement("input");
-    emailInput.type = "email";
-    emailInput.value = email;
-    emailInput.id = "editEmail";
+    // Update contact function
+    window.updateContact = function() {
+        let newFirstName = document.getElementById("editFirstName").value;
+        let newLastName = document.getElementById("editLastName").value;
+        let newPhone = document.getElementById("editPhone").value;
+        let newEmail = document.getElementById("editEmail").value;
 
-    // Replace text with input fields for editing
-    document.getElementById("firstName_" + i).innerHTML = "";
-    document.getElementById("firstName_" + i).appendChild(firstNameInput);
+        let tmp = {
+            OLDfirstName: firstName,
+            OLDlastName: lastName,
+            OLDphone: phone,
+            OLDemail: email,
+            userId: userId,
+            NEWfirstName: newFirstName,
+            NEWlastName: newLastName,
+            NEWphone: newPhone,
+            NEWemail: newEmail
+        };
+        let jsonPayload = JSON.stringify(tmp);
 
-    document.getElementById("lastName_" + i).innerHTML = "";
-    document.getElementById("lastName_" + i).appendChild(lastNameInput);
+        let url = urlBase + '/UpdateContact.' + extension;
 
-    document.getElementById("phone_" + i).innerHTML = "";
-    document.getElementById("phone_" + i).appendChild(phoneInput);
-
-    document.getElementById("email_" + i).innerHTML = "";
-    document.getElementById("email_" + i).appendChild(emailInput);
-
-
-	document.getElementById("contactUpdateResult").innerHTML = "";
-
-	let tmp = {OLDfirstName:firstName,OLDlastName:lastName,OLDphone:phone,OLDemail:email,userId:userId,NEWfirstName:firstNameInput.value,NEWlastName:lastNameInput.value,NEWphone:phoneInput.value,NEWemail:emailInput.value};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/UpdateContact.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
-				location.reload();
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactUpdateResult").innerHTML = err.message;
-	}
-	
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        try {
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
+                    location.reload();
+                }
+            };
+            xhr.send(jsonPayload);
+        } catch (err) {
+            document.getElementById("contactUpdateResult").innerHTML = err.message;
+        }
+    };
 }
-
 
 // ================ For login ------------------------
 document.addEventListener("DOMContentLoaded", function()
