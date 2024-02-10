@@ -16,10 +16,10 @@ if ($conn->connect_error) {
 	$result = $stmt->get_result();
 
 	if ($row = $result->fetch_assoc()) {
-		returnWithInfo($row['firstName'], $row['lastName'], $row['ID']);
 		http_response_code(200);
+		returnWithInfo($row['firstName'], $row['lastName'], $row['ID']);
 	} else {
-		http_response_code(500);
+		http_response_code(409);
 		returnWithError("No Records Found");
 	}
 
@@ -49,5 +49,3 @@ function returnWithInfo($firstName, $lastName, $id)
 	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 	sendResultInfoAsJson($retValue);
 }
-
-?>

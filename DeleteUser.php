@@ -13,26 +13,21 @@ if ($conn->connect_error) {
     $stmt->bind_param("s", $userId);
     $stmt->execute();
 
-    if ($stmt->affected_rows == 0) {
-        http_response_code(500);
-        returnWithError("Couldn't Delete From Contacts");
-    }
-
     //delete the user itself
     $stmt = $conn->prepare("DELETE FROM Users WHERE (ID = ?)");
     $stmt->bind_param("s", $userId);
     $stmt->execute();
 
-    if ($stmt->affected_rows > 0) {
+    if ($conn->affected_rows > 0) {
         http_response_code(200);
+        returnWithError("");
     } else {
-        http_response_code(500);
+        http_response_code(409);
         returnWithError("Couldn't Delete From Users");
     }
 
     $stmt->close();
     $conn->close();
-    returnWithError("");
 }
 function getRequestInfo()
 {

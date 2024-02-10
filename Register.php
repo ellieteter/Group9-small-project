@@ -32,7 +32,7 @@ if ($conn->connect_error) {
             http_response_code(200);
             returnWithInfo($inData["firstName"], $inData["lastName"], $conn->insert_id);
         } else {
-            http_response_code(500);
+            http_response_code(409);
             returnWithError("Unable to Create the Record");
         }
 
