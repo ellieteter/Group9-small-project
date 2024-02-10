@@ -213,10 +213,10 @@ function validateContactForm() {
 
 
 function validateUpdateContactForm() {
-    let upfirstName = document.getElementById("edit_first");
-    let uplastName = document.getElementById("edit_last");
-    let upinputPhone = document.getElementById("edit_phone");
-    let upinputEmail = document.getElementById("edit_email");
+    let upfirstName = document.getElementById("edit_firstName");
+    let uplastName = document.getElementById("edit_lastName");
+    let upinputPhone = document.getElementById("edit_inputPhone");
+    let upinputEmail = document.getElementById("edit_inputEmail");
 
     let phonePattern = new RegExp("^[0-9]{3}-[0-9]{3}-[0-9]{4}$");
     let emailPattern = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
