@@ -4,6 +4,8 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let phone = "";
+let email = "";
 const ids = []
 
 // Call the function initially to load the count
@@ -433,11 +435,10 @@ function loadContacts()
 
 
 function editRow(jsonObject, i) {
-    let firstName = jsonObject.results[i].FirstName;
-    let lastName = jsonObject.results[i].LastName;
-    let phone = jsonObject.results[i].Phone;
-    let email = jsonObject.results[i].Email;
-    let userId = jsonObject.results[i].userID;
+    firstName = jsonObject.results[i].FirstName;
+    lastName = jsonObject.results[i].LastName;
+    phone = jsonObject.results[i].Phone;
+    email = jsonObject.results[i].Email;
 
     // Set the values of modal fields
     document.getElementById("edit_first").textContent = firstName;
@@ -445,44 +446,52 @@ function editRow(jsonObject, i) {
     document.getElementById("edit_phone").textContent = phone;
     document.getElementById("edit_email").textContent = email;
 
+}
 
-    // Update contact function
-    updateContact = function() {
-		
-		document.getElementById("contactAddResult").innerHTML = "";
 
-        let newFirstName = document.getElementById("edit_firstName").value;
-        let newLastName = document.getElementById("edit_lastName").value;
-        let newPhone = document.getElementById("edit_inputPhone").value;
-        let newEmail = document.getElementById("edit_inputEmail").value;
+// Update contact function
+updateContact = function() {
 
-		if (!validateContactForm())
-	{
-		document.getElementById("contactUpdateResult").innerHTML = "Failed - Fields empty or missing criteria";
-		return;
+	document.getElementById("contactAddResult").innerHTML = "";
+
+	let newFirstName = document.getElementById("edit_firstName").value;
+	let newLastName = document.getElementById("edit_lastName").value;
+	let newPhone = document.getElementById("edit_inputPhone").value;
+	let newEmail = document.getElementById("edit_inputEmail").value;
+
+	console.log(document.getElementById("edit_firstName").value);
+
+	if (!validateContactForm())
+{
+	document.getElementById("contactUpdateResult").innerHTML = "Failed - Fields empty or missing criteria";
+	return;
+}
+
+	var tmp = {NEWfirstName:newFirstName,NEWlastName:newLastName,NEWphone:newPhone,NEWemail:newEmail,userId:userId,OLDfirstName:firstName,OLDlastName:lastName,OLDphone:phone,OLDemail:email};
+	let jsonPayload = JSON.stringify(tmp);
+
+	let url = urlBase + '/UpdateContact.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try {
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
+				loadContacts();
+				location.reload();
+			}
+		};
+		xhr.send(jsonPayload);
+	} catch (err) {
+		document.getElementById("contactUpdateResult").innerHTML = err.message;
 	}
 
-        var tmp = {NEWfirstName:newFirstName,NEWlastName:newLastName,NEWphone:newPhone,NEWemail:newEmail,userId:userId,OLDfirstName:firstName,OLDlastName:lastName,OLDphone:phone,OLDemail:email};
-        let jsonPayload = JSON.stringify(tmp);
-
-        let url = urlBase + '/UpdateContact.' + extension;
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        try {
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
-                    loadContacts();
-					location.reload();
-                }
-            };
-            xhr.send(jsonPayload);
-        } catch (err) {
-            document.getElementById("contactUpdateResult").innerHTML = err.message;
-        }
-    };
+	firstName = "";
+    lastName = "";
+    phone = "";
+    email = "";
 }
 
 // ================ For login ------------------------
