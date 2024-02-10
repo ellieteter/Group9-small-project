@@ -202,7 +202,7 @@ function addContact()
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 				console.log("Contact added successfully:", tmp);
 				updateUIWithContact(tmp);
-				loadContacts();
+				location.reload();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -413,7 +413,7 @@ function editRow(jsonObject, i)
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
-				loadContacts();
+				location.reload();
 			}
 		};
 		xhr.send(jsonPayload);
