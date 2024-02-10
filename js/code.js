@@ -319,7 +319,6 @@ function loadContacts()
                 let text = "<table border='1'>"
 				
                 for (let i = 0; i < jsonObject.results.length; i++) {
-					
 					ids[i] = jsonObject.results[i].userId;
 					text += "<tr id='row" + i + "'>";
 					text += "<td>" + jsonObject.results[i].FirstName + "</td>";
