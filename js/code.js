@@ -395,6 +395,7 @@ function loadContacts()
     }
 }
 
+
 function editRow(jsonObject, i) {
     let firstName = jsonObject.results[i].FirstName;
     let lastName = jsonObject.results[i].LastName;
@@ -416,17 +417,7 @@ function editRow(jsonObject, i) {
         let newPhone = document.getElementById("edit_phone").value;
         let newEmail = document.getElementById("edit_email").value;
 
-        let tmp = {
-            OLDfirstName: firstName,
-            OLDlastName: lastName,
-            OLDphone: phone,
-            OLDemail: email,
-            userId: userId,
-            NEWfirstName: newFirstName,
-            NEWlastName: newLastName,
-            NEWphone: newPhone,
-            NEWemail: newEmail
-        };
+        var tmp = {NEWfirstName:newFirstName,NEWlastName:newLastName,NEWphone:newPhone,NEWemail:newEmail,userId:userId,OLDfirstName:firstName,OLDlastName:lastName,OLDphone:phone,OLDemail:email};
         let jsonPayload = JSON.stringify(tmp);
 
         let url = urlBase + '/UpdateContact.' + extension;
