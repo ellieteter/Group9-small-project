@@ -21,7 +21,7 @@ if ($conn->connect_error) {
             $searchResults .= ",";
         }
         $searchCount++;
-        $searchResults .= '{"FirstName":"' . $row["FirstName"] . '", "LastName":"' . $row["LastName"] . '", "Phone":"' . $row["Phone"] . '", "Email":"' . $row["Email"] . '"}';
+        $searchResults .= '{"FirstName":"' . $row["FirstName"] . '", "LastName":"' . $row["LastName"] . '", "Phone":"' . $row["Phone"] . '", "Email":"' . $row["Email"] . '","userId":"' . $row["UserID"] . '"}';
     }
 
     if ($searchCount == 0) {
