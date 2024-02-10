@@ -3,9 +3,11 @@ const extension = 'php';
 
 let userId = 0;
 let firstName = "";
-let lastName = "";
-let phone = "";
-let email = "";
+let lastName ="";
+let updatefirstName = "";
+let updatelastName = "";
+let updatephone = "";
+let updateemail = "";
 const ids = []
 
 // Call the function initially to load the count
@@ -435,16 +437,16 @@ function loadContacts()
 
 
 function editRow(jsonObject, i) {
-    firstName = jsonObject.results[i].FirstName;
-    lastName = jsonObject.results[i].LastName;
-    phone = jsonObject.results[i].Phone;
-    email = jsonObject.results[i].Email;
+    updatefirstName = jsonObject.results[i].FirstName;
+    updatelastName = jsonObject.results[i].LastName;
+    updatephone = jsonObject.results[i].Phone;
+    updateemail = jsonObject.results[i].Email;
 
     // Set the values of modal fields
-    document.getElementById("edit_first").textContent = firstName;
-    document.getElementById("edit_last").textContent = lastName;
-    document.getElementById("edit_phone").textContent = phone;
-    document.getElementById("edit_email").textContent = email;
+    document.getElementById("edit_first").textContent = updatefirstName;
+    document.getElementById("edit_last").textContent = updatelastName;
+    document.getElementById("edit_phone").textContent = updatephone;
+    document.getElementById("edit_email").textContent = updateemail;
 
 }
 
@@ -459,15 +461,13 @@ updateContact = function() {
 	let newPhone = document.getElementById("edit_inputPhone").value;
 	let newEmail = document.getElementById("edit_inputEmail").value;
 
-	console.log(document.getElementById("edit_firstName").value);
-
-	if (!validateContactForm())
+	if (!validateUpdateContactForm())
 {
 	document.getElementById("contactUpdateResult").innerHTML = "Failed - Fields empty or missing criteria";
 	return;
 }
 
-	var tmp = {NEWfirstName:newFirstName,NEWlastName:newLastName,NEWphone:newPhone,NEWemail:newEmail,userId:userId,OLDfirstName:firstName,OLDlastName:lastName,OLDphone:phone,OLDemail:email};
+	var tmp = {NEWfirstName:newFirstName,NEWlastName:newLastName,NEWphone:newPhone,NEWemail:newEmail,userId:userId,OLDfirstName:updatefirstName,OLDlastName:updatelastName,OLDphone:updatephone,OLDemail:updateemail};
 	let jsonPayload = JSON.stringify(tmp);
 
 	let url = urlBase + '/UpdateContact.' + extension;
@@ -488,10 +488,10 @@ updateContact = function() {
 		document.getElementById("contactUpdateResult").innerHTML = err.message;
 	}
 
-	firstName = "";
-    lastName = "";
-    phone = "";
-    email = "";
+	updatefirstName = "";
+    updatelastName = "";
+    updatephone = "";
+    updateemail = "";
 }
 
 // ================ For login ------------------------
