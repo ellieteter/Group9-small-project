@@ -448,6 +448,9 @@ function editRow(jsonObject, i) {
 
     // Update contact function
     updateContact = function() {
+		
+		document.getElementById("contactAddResult").innerHTML = "";
+
         let newFirstName = document.getElementById("edit_firstName").value;
         let newLastName = document.getElementById("edit_lastName").value;
         let newPhone = document.getElementById("edit_inputPhone").value;
