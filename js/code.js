@@ -6,6 +6,12 @@ let firstName = "";
 let lastName = "";
 const ids = []
 
+// Call the function initially to load the count
+updateContactCount();
+
+setInterval(updateContactCount, 3000);
+loadContacts();
+
 function doLogin()
 {
 	userId = 0;
@@ -196,6 +202,7 @@ function addContact()
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 				console.log("Contact added successfully:", tmp);
 				updateUIWithContact(tmp);
+				loadContacts();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -204,7 +211,14 @@ function addContact()
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
-	
+
+	 // Adding event listener to clear the content when 'x' button is clicked
+	 let closeButton = document.getElementById("addcon_close");
+	 if (closeButton) {
+		 closeButton.addEventListener("click", function() {
+			 document.getElementById("contactAddResult").innerHTML = "";
+		 });
+	 }
 }
 
 
@@ -257,10 +271,6 @@ function updateContactCount() {
 	}
 }
 
-// Call the function initially to load the count
-updateContactCount();
-
-setInterval(updateContactCount, 5000);
 
 
 
@@ -466,6 +476,7 @@ function deleteRow(jsonObject, i)
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				loadContacts();
+				location.reload();
 			}
 
 		};
