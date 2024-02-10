@@ -346,19 +346,6 @@ function loadContacts()
 
 function editRow(jsonObject, i)
 {
-	//userID;
-	//let data = document.cookie;
-	//let splits = data.split(",");
-	/*for(var i = 0; i < splits.length; i++) 
-	{
-		let thisOne = splits[i].trim();
-		let tokens = thisOne.split("=");
-	
-		if( tokens[0] == "userId" )
-		{
-			userId = parseInt( tokens[1].trim() );
-		}
-	}*/
 
 	let firstName = jsonObject.results[i].FirstName;
     let lastName = jsonObject.results[i].LastName;
@@ -402,7 +389,7 @@ function editRow(jsonObject, i)
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 
-	let tmp = {OLDfirstName:firstName,OLDlastName:lastName,OLDphone:phone,OLDemail:email,userId:userId,NEWfirstName:NEWfirstNameInput.value,NEWlastName:NEWlastNameInput.value,NEWphone:NEWphoneInput.value,NEWemail:NEWemailInput.value};
+	let tmp = {OLDfirstName:firstName,OLDlastName:lastName,OLDphone:phone,OLDemail:email,userId:userId,NEWfirstName:firstNameInput.value,NEWlastName:lastNameInput.value,NEWphone:phoneInput.value,NEWemail:emailInput.value};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/UpdateContact.' + extension;
