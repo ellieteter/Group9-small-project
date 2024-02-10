@@ -198,43 +198,6 @@ function addContact()
 	
 }
 
-function updateContact()
-{
-	let firstName = document.getElementById("firstName").value;
-	let lastName = document.getElementById("lastName").value;
-	let phone = document.getElementById("inputPhone").value;
-	let email = document.getElementById("inputEmail").value;
-	
-
-	document.getElementById("contactUpdateResult").innerHTML = "";
-
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID:userId};
-	let jsonPayload = JSON.stringify( tmp );
-
-	let url = urlBase + '/UpdateContact.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
-				console.log("Contact updated successfully:", tmp);
-				updateUIWithContact(tmp);
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactUpdateResult").innerHTML = err.message;
-	}
-	
-}
 
 function updateContactCount() {
 
@@ -297,12 +260,6 @@ function updateUIWithContact(contact) {
     // Create a new row
     let newRow = document.createElement("tr");
     newRow.innerHTML = `
-        <th scope="row" class="ps-4">
-            <div class="form-check font-size-16">
-                <input type="checkbox" class="form-check-input" id="contacusercheck1" />
-                <label class="form-check-label" for="contacusercheck1"></label>
-            </div>
-        </th>
         <td>${contact.firstName} </td>
 		<td>${contact.lastName}</td>
         <td><span class="badge badge-soft-info mb-0">${contact.phone}</span></td>
@@ -311,10 +268,14 @@ function updateUIWithContact(contact) {
         <td>
             <ul class="list-inline mb-0">
                 <li class="list-inline-item">
-                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+					<button type="button" class="btn btn-primary px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+						<i class="bx bx-pencil font-size-18"></i>
+					</button>
                 </li>
                 <li class="list-inline-item">
-                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
+					<button type="button" class="btn btn-danger px-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+						<i class="bx bx-trash-alt font-size-18"></i>
+					</button>
                 </li>
             </ul>
         </td>
@@ -351,15 +312,14 @@ function loadContacts()
 					
 					ids[i] = jsonObject.results[i].userId;
 					text += "<tr id='row" + i + "'>";
-					text += "<td><div class='form-check font-size-16'><input type='checkbox' class='form-check-input' id='contacusercheck" + i + "' /><label class='form-check-label' for='contacusercheck" + i + "'></label></div></td>";
 					text += "<td>" + jsonObject.results[i].FirstName + "</td>";
 					text += "<td>" + jsonObject.results[i].LastName + "</td>";
 					text += "<td><span class='badge badge-soft-success mb-0'>" + jsonObject.results[i].Phone + "</span></td>";
 					text += "<td>" + jsonObject.results[i].Email + "</td>";
 					text += "<td>";
 					text += "<ul class='list-inline mb-0'>";
-					text += "<li class='list-inline-item'><a href='javascript:void(0);' data-bs-toggle='tooltip' data-bs-placement='top' title='Edit' class='px-2 text-primary'><i class='bx bx-pencil font-size-18'></i></a></li>";
-					text += "<li class='list-inline-item'><a href='javascript:void(0);' data-bs-toggle='tooltip' data-bs-placement='top' title='Delete' class='px-2 text-danger'><i class='bx bx-trash-alt font-size-18'></i></a></li>";
+					text += "<li class='list-inline-item'><button type='button' onclick='editRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-primary px-2' data-bs-toggle='tooltip' data-bs-placement='top' title='Edit'><i class='bx bx-pencil font-size-18'></i></button></li>";
+					text += "<li class='list-inline-item'><button type='button' onclick='deleteRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-danger px-2' data-bs-toggle='tooltip' data-bs-placement='top' title='Delete'><i class='bx bx-trash-alt font-size-18'></i></button></li>";
 					text += "</ul>";
 					text += "</td>";
 					text += "</tr>";
@@ -372,6 +332,69 @@ function loadContacts()
     } catch (err) {
         console.log(err.message);
     }
+}
+
+function editRow(jsonObject, i)
+{
+	//userID;
+	//let data = document.cookie;
+	//let splits = data.split(",");
+	/*for(var i = 0; i < splits.length; i++) 
+	{
+		let thisOne = splits[i].trim();
+		let tokens = thisOne.split("=");
+	
+		if( tokens[0] == "userId" )
+		{
+			userId = parseInt( tokens[1].trim() );
+		}
+	}*/
+
+
+	let firstNameI = jsonObject.results[i].FirstName;
+    let lastNameI = jsonObject.results[i].LastName;
+	let phone = jsonObject.results[i].Phone;
+    let email = jsonObject.results[i].Email;
+	let userId = jsonObject.results[i].userID
+
+	var namef_data = firstNameI.innerText;
+    var namel_data = lastNameI.innerText;
+    var email_data = email.innerText;
+    var phone_data = phone.innerText;
+
+    // Replace the inner HTML with input fields containing the current values
+    firstNameI.innerHTML = "<input type='text' id='namef_text" + id + "' value='" + namef_data + "'>";
+    lastNameI.innerHTML = "<input type='text' id='namel_text" + id + "' value='" + namel_data + "'>";
+    email.innerHTML = "<input type='text' id='email_text" + id + "' value='" + email_data + "'>";
+    phone.innerHTML = "<input type='text' id='phone_text" + id + "' value='" + phone_data + "'>";
+
+	document.getElementById("contactUpdateResult").innerHTML = "";
+
+	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userId:userID};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/UpdateContact.' + extension;
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
+				loadContacts();
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("contactUpdateResult").innerHTML = err.message;
+	}
+	
 }
 
 
@@ -399,6 +422,43 @@ document.addEventListener("DOMContentLoaded", function()
 	  return false;
 	});
 });
+
+function deleteRow(jsonObject, i)
+{
+	let firstName = jsonObject.results[i].FirstName;
+    let lastName = jsonObject.results[i].LastName;
+	let phone = jsonObject.results[i].Phone;
+    let email = jsonObject.results[i].Email;
+	let userID = jsonObject.results[i].userID
+	
+	var tmp = {firstName: firstName, lastName: lastName, phone:phone, email:email, userID:userID};
+	
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/DeleteContact.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				loadContacts();
+			}
+
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		console.log(err.message);
+	}
+}
+
 
 
 /*
