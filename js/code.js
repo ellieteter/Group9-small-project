@@ -66,6 +66,17 @@ function doRegister()
 	let username = document.getElementById("usrname").value;
 	let password = document.getElementById("loginPassword").value;
 
+	// Regular expression for the password pattern
+	let passwordPattern = new RegExp('(?=.*\\d)(?=.*[\\W_])(?=.*[A-Z]).{8,20}');
+
+	
+	// Check if the password matches the pattern
+	if (!passwordPattern.test(password)) {
+		console.log("I got hit!");
+		document.getElementById("registerResult").innerHTML = "Password does not meet the required criteria.";
+		return; // Exit the function if the password is invalid
+	}
+
 	var hash = md5( password );
 	
 	document.getElementById("registerResult").innerHTML = "";
@@ -81,6 +92,13 @@ function doRegister()
 
 	xhr.onreadystatechange = function() 
 	{
+		if (!passwordPattern.test(password)) {
+			console.log("I got hit in the readystatechange!")
+			document.getElementById("registerResult").innerHTML = "Password does not meet the required criteria.";
+			return; // Exit the function if the password is invalid
+		}
+
+
 		if (this.readyState == 4 && this.status == 200) 
 		{
 			let jsonObject = JSON.parse( xhr.responseText );
