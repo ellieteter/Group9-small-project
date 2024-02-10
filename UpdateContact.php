@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     $stmt->bind_param("sssssssss", $inData["NEWfirstName"], $inData["NEWlastName"], $inData["NEWphone"], $inData["NEWemail"], $inData["userId"], $inData["OLDfirstName"], $inData["OLDlastName"], $inData["OLDphone"], $inData["OLDemail"]);
     $stmt->execute();
 
-    if ($stmt->affected_rows > 0) {
+    if ($conn->affected_rows > 0) {
         http_response_code(200);
     } else {
         http_response_code(409);
