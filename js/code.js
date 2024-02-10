@@ -408,8 +408,6 @@ function editRow(jsonObject, i) {
     document.getElementById("edit_phone").textContent = phone;
     document.getElementById("edit_email").textContent = email;
 
-    // Show modal
-    $('#EditcontactModal').modal('show');
 
     // Update contact function
     window.updateContact = function() {
