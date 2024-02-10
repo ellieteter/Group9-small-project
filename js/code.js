@@ -172,6 +172,43 @@ function readCookie()
 	}
 }
 
+function validateContactForm() {
+    let firstName = document.getElementById("firstName");
+    let lastName = document.getElementById("lastName");
+    let inputPhone = document.getElementById("inputPhone");
+    let inputEmail = document.getElementById("inputEmail");
+
+    let phonePattern = new RegExp("^[0-9]{3}-[0-9]{3}-[0-9]{4}$");
+    let emailPattern = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+
+    let validationMessages = [];
+
+    if (!firstName.value.trim()) {
+        validationMessages.push("First Name is required.");
+    }
+
+    if (!lastName.value.trim()) {
+        validationMessages.push("Last Name is required.");
+    }
+
+    if (!phonePattern.test(inputPhone.value)) {
+        validationMessages.push("Phone Number must be in the format ###-###-####.");
+    }
+
+    if (!emailPattern.test(inputEmail.value)) {
+        validationMessages.push("Please enter a valid Email Address.");
+    }
+
+    if (validationMessages.length > 0) {
+        alert(validationMessages.join("\n"));
+        firstName.focus();
+        return false;
+    }
+
+    return true;
+}
+
+
 
 function addContact()
 {
@@ -180,8 +217,13 @@ function addContact()
 	let lastName = document.getElementById("lastName").value;
 	let phone = document.getElementById("inputPhone").value;
 	let email = document.getElementById("inputEmail").value;
-	
 
+	if (!validateContactForm())
+	{
+		document.getElementById("contactAddResult").innerHTML = "Failed - Fields empty or missing criteria";
+		return;
+	}
+	
 	document.getElementById("contactAddResult").innerHTML = "";
 
 	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userID:userId};
