@@ -379,7 +379,7 @@ function loadContacts()
 					text += "<td>" + jsonObject.results[i].Email + "</td>";
 					text += "<td>";
 					text += "<ul class='list-inline mb-0'>";
-					text += "<li class='list-inline-item'><button type='button' onclick='editRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-primary px-2' data-bs-toggle='tooltip' data-bs-placement='top' title='Edit'><i class='bx bx-pencil font-size-18'></i></button></li>";
+					text += "<li class='list-inline-item'><button type='button' onclick='editRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-primary px-2' data-bs-toggle='tooltip' data-bs-target='#EditcontactModal' data-bs-placement='top' title='Edit'><i class='bx bx-pencil font-size-18'></i></button></li>";
 					text += "<li class='list-inline-item'><button type='button' onclick='deleteRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-danger px-2' data-bs-toggle='tooltip' data-bs-placement='top' title='Delete'><i class='bx bx-trash-alt font-size-18'></i></button></li>";
 					text += "</ul>";
 					text += "</td>";
