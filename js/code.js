@@ -67,6 +67,15 @@ function doRegister()
 	let username = document.getElementById("inputUsername").value;
 	let password = document.getElementById("inputPassword").value;
 
+	let passwordPattern = new RegExp('(?=.\d)(?=.[\W_])(?=.*[A-Z]).{8,20}');
+
+
+    // Check if the password matches the pattern
+    if (!passwordPattern.test(password)) {
+        document.getElementById("registerResult").innerHTML = "Password does not meet the required criteria.";
+        return; 
+    }
+
 	var hash = md5( password );
 	
 	document.getElementById("registerResult").innerHTML = "";
