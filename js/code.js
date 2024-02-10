@@ -448,10 +448,10 @@ function editRow(jsonObject, i) {
 
     // Update contact function
     updateContact = function() {
-        let newFirstName = document.getElementById("edit_first").value;
-        let newLastName = document.getElementById("edit_last").value;
-        let newPhone = document.getElementById("edit_phone").value;
-        let newEmail = document.getElementById("edit_email").value;
+        let newFirstName = document.getElementById("edit_firstName").value;
+        let newLastName = document.getElementById("edit_lastName").value;
+        let newPhone = document.getElementById("edit_inputPhone").value;
+        let newEmail = document.getElementById("edit_inputEmail").value;
 
 		if (!validateContactForm())
 	{
