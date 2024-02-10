@@ -447,7 +447,7 @@ function deleteRow(jsonObject, i)
     let lastName = jsonObject.results[i].LastName;
 	let phone = jsonObject.results[i].Phone;
     let email = jsonObject.results[i].Email;
-	let userID = jsonObject.results[i].userID
+	let userID = jsonObject.results[i].userId
 	
 	var tmp = {firstName: firstName, lastName: lastName, phone:phone, email:email, userID:userID};
 	
