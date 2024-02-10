@@ -379,7 +379,7 @@ function loadContacts()
 					text += "<td>" + jsonObject.results[i].Email + "</td>";
 					text += "<td>";
 					text += "<ul class='list-inline mb-0'>";
-					text += "<li class='list-inline-item'><button type='button' onclick='editRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-primary px-2' data-bs-toggle='tooltip' data-bs-target='#EditcontactModal' data-bs-placement='top' title='Edit'><i class='bx bx-pencil font-size-18'></i></button></li>";
+					text += "<li class='list-inline-item'><button type='button' onclick='editRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-primary px-2' data-bs-toggle='modal' data-bs-target='#EditcontactModal' data-bs-placement='top' title='Edit'><i class='bx bx-pencil font-size-18'></i></button></li>";
 					text += "<li class='list-inline-item'><button type='button' onclick='deleteRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-danger px-2' data-bs-toggle='tooltip' data-bs-placement='top' title='Delete'><i class='bx bx-trash-alt font-size-18'></i></button></li>";
 					text += "</ul>";
 					text += "</td>";
@@ -411,10 +411,10 @@ function editRow(jsonObject, i) {
 
     // Update contact function
     window.updateContact = function() {
-        let newFirstName = document.getElementById("editFirstName").value;
-        let newLastName = document.getElementById("editLastName").value;
-        let newPhone = document.getElementById("editPhone").value;
-        let newEmail = document.getElementById("editEmail").value;
+        let newFirstName = document.getElementById("edit_first").value;
+        let newLastName = document.getElementById("edit_last").value;
+        let newPhone = document.getElementById("edit_phone").value;
+        let newEmail = document.getElementById("edit_email").value;
 
         let tmp = {
             OLDfirstName: firstName,
