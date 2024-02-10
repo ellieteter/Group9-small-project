@@ -222,7 +222,7 @@ function editRow(jsonObject, i)
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userId:userID};
+	let tmp = {OLDfirstName:firstName,OLDlastName:lastName,OLDphone:phone,OLDemail:email,userId:userID};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/UpdateContact.' + extension;
