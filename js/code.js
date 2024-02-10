@@ -241,6 +241,7 @@ function updateContactCount() {
 				var count = jsonObject.Count;
 		
 				document.getElementById('contactCount').textContent = '(' + count + ')';
+				document.getElementById('pageCount').textContent = 'Showing '+ count % 10+' to 10 of'+ count;
 			}
 			else if(this.status == 409)
 			{
@@ -359,49 +360,49 @@ function editRow(jsonObject, i)
 		}
 	}*/
 
-	let firstName = jsonObject.results[i].FirstName;
-    let lastName = jsonObject.results[i].LastName;
-	let phone = jsonObject.results[i].Phone;
-    let email = jsonObject.results[i].Email;
-	let userId = jsonObject.results[i].userID
+	let OLDfirstName = jsonObject.results[i].FirstName;
+    let OLDlastName = jsonObject.results[i].LastName;
+	let OLDphone = jsonObject.results[i].Phone;
+    let OLDemail = jsonObject.results[i].Email;
+	let OLDuserId = jsonObject.results[i].userID
 	// Create input fields for editing
-    let firstNameInput = document.createElement("input");
+    let NEWfirstNameInput = document.createElement("input");
     firstNameInput.type = "text";
     firstNameInput.value = firstName;
     firstNameInput.id = "editFirstName";
 
-    let lastNameInput = document.createElement("input");
+    let NEWlastNameInput = document.createElement("input");
     lastNameInput.type = "text";
     lastNameInput.value = lastName;
     lastNameInput.id = "editLastName";
 
-    let phoneInput = document.createElement("input");
+    let NEWphoneInput = document.createElement("input");
     phoneInput.type = "text";
     phoneInput.value = phone;
     phoneInput.id = "editPhone";
 
-    let emailInput = document.createElement("input");
+    let NEWemailInput = document.createElement("input");
     emailInput.type = "email";
     emailInput.value = email;
     emailInput.id = "editEmail";
 
     // Replace text with input fields for editing
     document.getElementById("firstName_" + i).innerHTML = "";
-    document.getElementById("firstName_" + i).appendChild(firstNameInput);
+    document.getElementById("firstName_" + i).appendChild(NEWfirstNameInput);
 
     document.getElementById("lastName_" + i).innerHTML = "";
-    document.getElementById("lastName_" + i).appendChild(lastNameInput);
+    document.getElementById("lastName_" + i).appendChild(NEWlastNameInput);
 
     document.getElementById("phone_" + i).innerHTML = "";
-    document.getElementById("phone_" + i).appendChild(phoneInput);
+    document.getElementById("phone_" + i).appendChild(NEWphoneInput);
 
     document.getElementById("email_" + i).innerHTML = "";
-    document.getElementById("email_" + i).appendChild(emailInput);
+    document.getElementById("email_" + i).appendChild(NEWemailInput);
 
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 
-	let tmp = {firstName:firstName,lastName:lastName,phone:phone,email:email,userId:userID};
+	let tmp = {OLDfirstName:firstName,OLDlastName:lastName,OLDphone:phone,OLDemail:email,userId:userId,NEWfirstName:NEWfirstNameInput.value,NEWlastName:NEWlastNameInput.value,NEWphone:NEWphoneInput.value,NEWemail:NEWemailInput.value};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/UpdateContact.' + extension;
