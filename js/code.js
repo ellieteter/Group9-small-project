@@ -359,7 +359,7 @@ function updateContactCount() {
 
 
 function updateUIWithContact(contact) {
-    // Get the table body
+    
     let tableBody = document.querySelector(".project-list-table tbody");
     // Create a new row
     let newRow = document.createElement("tr");
@@ -578,18 +578,19 @@ function deleteRow(jsonObject, i)
 
 
 
-/*
-function searchColor()
+
+function searchContact()
 {
-	let srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
 	
-	let colorList = "";
+	let srch = document.getElementById("searchInput").value;
+	document.getElementById("contactSearchResult").innerHTML = "";
+	
+	let contactList = "";
 
 	let tmp = {search:srch,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/SearchColors.' + extension;
+	let url = urlBase + '/SearchContact.' + extension;
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -600,27 +601,45 @@ function searchColor()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
-				for( let i=0; i<jsonObject.results.length; i++ )
-				{
-					colorList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						colorList += "<br />\r\n";
-					}
-				}
+				if (jsonObject.results && jsonObject.results.length > 0) {
+                    document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved";
+                    
+                    for (let i = 0; i < jsonObject.results.length; i++) {
+                        let contact = jsonObject.results[i];
+                        
+						contactList += "<tr><td>" + contact.FirstName + "</td><td>" + contact.LastName + "</td><td>" + contact.Phone + "</td><td>" + contact.Email + "</td><td>";
+						contactList += "<ul class='list-inline mb-0'>";
+						contactList += "<li class='list-inline-item'><button type='button' onclick='editRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-primary px-2' data-bs-toggle='modal' data-bs-target='#EditcontactModal' data-bs-placement='top' title='Edit'><i class='bx bx-pencil font-size-18'></i></button></li>";
+						contactList += "<li class='list-inline-item'><button type='button' onclick='deleteRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-danger px-2' data-bs-toggle='tooltip' data-bs-placement='top' title='Delete'><i class='bx bx-trash-alt font-size-18'></i></button></li>";
+						contactList += "</ul>";
+						contactList += "</td></tr>";
+
+						
+                    }
+                   
+                    document.getElementById("contactsTableBody").innerHTML = contactList;
+
+                } else {
+                    document.getElementById("contactSearchResult").innerHTML = "No contacts found.";
+                }
 				
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
 	
 }
-*/
+
+function clearSearch() {
+    //clears the search input
+    document.getElementById("searchInput").value = "";
+    
+    loadContacts(); 
+}
