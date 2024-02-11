@@ -9,6 +9,8 @@ let updatelastName = "";
 let updatephone = "";
 let updateemail = "";
 const ids = []
+let pageNumber = 1;
+let pageSize = 10; //
 
 // Call the function initially to load the count
 updateContactCount();
@@ -409,8 +411,11 @@ function loadContacts()
                     return;
                 }
                 let text = "<table border='1'>"
+
+				let startIndex = (pageNumber - 1) * pageSize;
+    			let endIndex = Math.min(startIndex + pageSize, jsonObject.results.length);
 				
-                for (let i = 0; i < jsonObject.results.length; i++) {
+                for (let i = startIndex; i < endIndex; i++) {
 					ids[i] = jsonObject.results[i].userId;
 					text += "<tr id='row" + i + "'>";
 					text += "<td>" + jsonObject.results[i].FirstName + "</td>";
@@ -427,11 +432,26 @@ function loadContacts()
 				}
 				text += "</table>";
 				document.getElementById("contactsTableBody").innerHTML = text;
+				
             }
         };
         xhr.send(jsonPayload);
     } catch (err) {
         console.log(err.message);
+    }
+}
+
+
+function nextPage() {
+    pageNumber++;
+    loadContacts();
+}
+
+function previousPage(event) {
+	event.preventDefault()
+    if (pageNumber > 1) {
+        pageNumber--;
+        loadContacts();
     }
 }
 
