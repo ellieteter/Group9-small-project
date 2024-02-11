@@ -7,12 +7,24 @@
 }
 
 html,body{
-  display: grid;
+  /* display: grid;
   height: 100%;
   width: 100%;
   place-items: center;
   background: -webkit-linear-gradient(left, #003366,#004080,#0059b3
-, #0073e6);
+, #0073e6); */
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  /* background-color: #66BCD0; */
+  background-image: url('../images/bg4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  overflow: hidden;
 }
 
 ::selection{
@@ -233,4 +245,13 @@ form .btn input[type="submit"]{
 /* Change color (for password validation) */
 .pwvRed {
     color: red; 
+}
+
+/* Toucan logo */
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 10px;
+  margin-left: 10px;
 }
