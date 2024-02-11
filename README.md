@@ -1,2 +1,1 @@
-Check out our website!
-infonest.online
+Website: infonest.online
