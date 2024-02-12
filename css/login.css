@@ -242,9 +242,18 @@ form .btn input[type="submit"]{
     color: green; 
 }
 
+.pwvGreen span {
+  color: green;
+}
+
 /* Change color (for password validation) */
 .pwvRed {
     color: red; 
+}
+
+.invalid,
+.invalid * {
+    color: red;
 }
 
 /* Toucan logo */

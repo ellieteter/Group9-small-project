@@ -53,14 +53,12 @@ function doLogin()
 	
 				
 				window.location.href = "contacts.html";
-			}
-
-			else if(this.status == 409)
-				{		
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-					return;
-				}
-			
+			}	
+			else if (this.status == 409)
+			{		
+				document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+				return;
+			}	
 		};
 		xhr.send(jsonPayload);
 	}
@@ -213,7 +211,6 @@ function validateContactForm() {
     return true;
 }
 
-
 function validateUpdateContactForm() {
     let upfirstName = document.getElementById("edit_firstName");
     let uplastName = document.getElementById("edit_lastName");
@@ -249,8 +246,6 @@ function validateUpdateContactForm() {
 
     return true;
 }
-
-
 
 function addContact()
 {
@@ -305,7 +300,6 @@ function addContact()
 	 }
 }
 
-
 function updateContactCount() {
 
 	let data = document.cookie;
@@ -333,28 +327,40 @@ function updateContactCount() {
 	{
 		xhr.onreadystatechange = function() 
 		{
+			// ---- ORIGINAL CODE START ----
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				var count = jsonObject.Count;
+			// 	let jsonObject = JSON.parse( xhr.responseText );
+			// 	var count = jsonObject.Count;
 		
-				document.getElementById('contactCount').textContent = '(' + count + ')';
+			// 	document.getElementById('contactCount').textContent = '(' + count + ')';
 
-				if (count % 10 != 0)
-				{
-					document.getElementById('pageCount').textContent = 'Showing '+ count % 10+' to 10 of '+ count;
-				}
+			// 	if (count % 10 != 0)
+			// 	{
+			// 		document.getElementById('pageCount').textContent = 'Showing '+ count % 10+' to 10 of '+ count;
+			// 	}
 				
-				else
-				{
-					document.getElementById('pageCount').textContent = 'Showing '+ count +' to 10 of '+ count;
-				}
-			}
-			else if(this.status == 409)
-			{
-				document.getElementById('contactCount').textContent = '(0)';
-			}
-			
+			// 	else
+			// 	{
+			// 		document.getElementById('pageCount').textContent = 'Showing '+ count +' to 10 of '+ count;
+			// 	}
+			// }
+			// else if(this.status == 409)
+			// {
+			// 	document.getElementById('contactCount').textContent = '(0)';
+			// }
+			// ---- ORIGINAL CODE END ----
+
+			// I DONT KNOW WHATS WRONG WITH THIS ONE
+				let jsonObject = JSON.parse(xhr.responseText);
+                var count = jsonObject.Count;
+                let pageStartIndex = (pageNumber - 1) * pageSize + 1; // Starting index
+                let pageEndIndex = Math.min(pageNumber * pageSize, count); // Ending index
+                document.getElementById('contactCount').textContent = '(' + count + ')';
+                document.getElementById('pageCount').textContent = 'Showing ' + pageStartIndex + ' to ' + pageEndIndex + ' of ' + count; 
+            } else if (this.status == 409) {
+                document.getElementById('contactCount').textContent = '(0)';
+            }
 		};
 		xhr.send(jsonPayload);
 	}
@@ -363,9 +369,6 @@ function updateContactCount() {
 		console.error('Error fetching data:', err);
 	}
 }
-
-
-
 
 function updateUIWithContact(contact) {
     
@@ -396,8 +399,6 @@ function updateUIWithContact(contact) {
     // Append the new row to the table
     tableBody.appendChild(newRow);
 }
-
-
 
 function loadContacts()
 {
@@ -441,7 +442,7 @@ function loadContacts()
 				}
 				text += "</table>";
 				document.getElementById("contactsTableBody").innerHTML = text;
-				
+				updatePaginationButtons(jsonObject.results.length);
             }
         };
         xhr.send(jsonPayload);
@@ -450,10 +451,11 @@ function loadContacts()
     }
 }
 
-
+// Pageination
 function nextPage() {
     pageNumber++;
     loadContacts();
+	updatePaginationButtons();
 }
 
 function previousPage(event) {
@@ -461,9 +463,31 @@ function previousPage(event) {
     if (pageNumber > 1) {
         pageNumber--;
         loadContacts();
+		updatePaginationButtons();
     }
 }
 
+function updatePaginationButtons(totalContacts) {
+    var prevPageButton = document.getElementById("prevPage");
+    var nextPageButton = document.getElementById("nextPage");
+
+    // Disable previous page button on page 1
+    if (pageNumber <= 1) {
+        prevPageButton.classList.add("disabled");
+    } else {
+        prevPageButton.classList.remove("disabled");
+    }
+    
+    // Max # of pages
+    var maxPage = Math.ceil(totalContacts / pageSize);
+    
+    // Disable next page button on last page
+    if (pageNumber >= maxPage) {
+        nextPageButton.classList.add("disabled");
+    } else {
+        nextPageButton.classList.remove("disabled");
+    }
+}
 
 function editRow(jsonObject, i) {
     updatefirstName = jsonObject.results[i].FirstName;
@@ -478,7 +502,6 @@ function editRow(jsonObject, i) {
     document.getElementById("edit_email").textContent = updateemail;
 
 }
-
 
 // Update contact function
 updateContact = function() {
@@ -585,9 +608,6 @@ function deleteRow(jsonObject, i)
 	}
 }
 
-
-
-
 function searchContact()
 {
 	
@@ -618,7 +638,9 @@ function searchContact()
                     
                     for (let i = 0; i < jsonObject.results.length; i++) {
                         let contact = jsonObject.results[i];
-						contactList += "<tr><td>" + contact.FirstName + "</td><td>" + contact.LastName + "</td><td>" + contact.Phone + "</td><td>" + contact.Email + "</td><td>";
+						// contactList += "<tr><td>" + contact.FirstName + "</td><td>" + contact.LastName + "</td><td style='padding: 0;'>" +
+						// "<span class='list-inline mb-0 input-group-text form-control' id='basic-addon1' style='background-color: green; color: white; border: none;'>" + contact.Phone + "</span></td><td>" + contact.Email + "</td><td>";
+						contactList += "<tr><td>" + contact.FirstName + "</td><td>" + contact.LastName + "</td><td>" + contact.Phone + "</span></td><td>" + contact.Email + "</td><td>";
 						contactList += "<ul class='list-inline mb-0'>";
 						contactList += "<li class='list-inline-item'><button type='button' onclick='editRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-primary px-2' data-bs-toggle='modal' data-bs-target='#EditcontactModal' data-bs-placement='top' title='Edit'><i class='bx bx-pencil font-size-18'></i></button></li>";
 						contactList += "<li class='list-inline-item'><button type='button' onclick='deleteRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-danger px-2' data-bs-toggle='tooltip' data-bs-placement='top' title='Delete'><i class='bx bx-trash-alt font-size-18'></i></button></li>";
