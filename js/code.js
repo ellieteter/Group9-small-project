@@ -10,12 +10,7 @@ let updatephone = "";
 let updateemail = "";
 const ids = []
 let pageNumber = 1;
-let pageSize = 10; //
-
-// Call the function initially to load the count
-updateContactCount();
-
-setInterval(updateContactCount, 3000);
+let pageSize = 10; 
 
 function doLogin()
 {
