@@ -71,23 +71,14 @@ function doLogin()
 
 }
 
-function doRegister(event)
+function doRegister()
 {
-	event.preventDefault();
-
+	
 	let firstName = document.getElementById("firstName").value;
 	let lastName = document.getElementById("lastName").value;
 	let username = document.getElementById("inputUsername").value;
 	let password = document.getElementById("inputPassword").value;
-
-	let passwordPattern = new RegExp('(?=.\d)(?=.[\W_])(?=.*[A-Z]).{8,20}');
-
-
-    // Check if the password matches the pattern
-    if (!passwordPattern.test(password)) {
-        document.getElementById("registerResult").innerHTML = "Password does not meet the required criteria.";
-        return; 
-    }
+	
 
 	var hash = md5( password );
 	
@@ -101,35 +92,36 @@ function doRegister(event)
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-	xhr.onreadystatechange = function() 
-	{
-		if (this.readyState == 4 && this.status == 200) 
+	try{
+		xhr.onreadystatechange = function() 
 		{
-			let jsonObject = JSON.parse( xhr.responseText );
-			userId = jsonObject.id;
-			document.getElementById("registerResult").innerHTML = "User has been added!";
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				window.location.href = "contacts.html";
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+				document.getElementById("registerResult").innerHTML = "User has been added!";
 
-			firstName = jsonObject.firstName;
-			lastName = jsonObject.lastName;
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
 
-			saveCookie();
+				saveCookie();
 
 			
-			window.location.href = "contacts.html";
-		}
-		else if (this.status == 409)
-		{
-			document.getElementById("registerResult").innerHTML = "User already exists";
+			
+			}
+			else if (this.status == 409)
+			{
+				document.getElementById("registerResult").innerHTML = "User already exists";
 
-		}
-		else 
-		{
-			document.getElementById("registerResult").innerHTML = "Server error: " + this.status;
-		}
-	}
-	try
-	{
+			}
+			else 
+			{
+				document.getElementById("registerResult").innerHTML = "Server error: " + this.status;
+			}
+
+		
+		};
 		xhr.send(jsonPayload);
 	}
 	catch (err)
@@ -444,11 +436,9 @@ function loadContacts()
 }
 
 
-// Pageination
 function nextPage() {
     pageNumber++;
     loadContacts();
-	updatePaginationButtons();
 }
 
 function previousPage(event) {
@@ -456,29 +446,6 @@ function previousPage(event) {
     if (pageNumber > 1) {
         pageNumber--;
         loadContacts();
-		updatePaginationButtons();
-    }
-}
-
-function updatePaginationButtons(totalContacts) {
-    var prevPageButton = document.getElementById("prevPage");
-    var nextPageButton = document.getElementById("nextPage");
-
-    // Disable previous page button on page 1
-    if (pageNumber <= 1) {
-        prevPageButton.classList.add("disabled");
-    } else {
-        prevPageButton.classList.remove("disabled");
-    }
-    
-    // Max # of pages
-    var maxPage = Math.ceil(totalContacts / pageSize);
-    
-    // Disable next page button on last page
-    if (pageNumber >= maxPage) {
-        nextPageButton.classList.add("disabled");
-    } else {
-        nextPageButton.classList.remove("disabled");
     }
 }
 
@@ -608,7 +575,6 @@ function deleteRow(jsonObject, i)
 
 function searchContact()
 {
-	
 	let srch = document.getElementById("searchInput").value;
 	document.getElementById("contactSearchResult").innerHTML = "";
 	
@@ -628,12 +594,13 @@ function searchContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+				// document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+				document.getElementById("contactSearchResult").innerHTML = "";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
 				if (jsonObject.results && jsonObject.results.length > 0) {
-                    document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved";
-                    
+                    // document.getElementById("contactSearchResult").innerHTML = "Contact(s) have been retrieved";
+                    document.getElementById("contactSearchResult").innerHTML = "";
                     for (let i = 0; i < jsonObject.results.length; i++) {
                         let contact = jsonObject.results[i];
                         
@@ -646,13 +613,15 @@ function searchContact()
 
 						
                     }
-                   
                     document.getElementById("contactsTableBody").innerHTML = contactList;
-
-                } else {
-                    document.getElementById("contactSearchResult").innerHTML = "No contacts found.";
-                }
-				
+                } 
+				// else {
+				// 	document.getElementById("contactsTableBody").innerHTML = "";
+                //     document.getElementById("contactSearchResult").innerHTML = "No contacts found";
+                // }
+			}
+			else {
+				document.getElementById("contactsTableBody").innerHTML = "";
 			}
 		};
 		xhr.send(jsonPayload);
