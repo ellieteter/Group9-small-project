@@ -12,6 +12,40 @@
 </head>
 
 <body>
+  <style>
+    .main-container{
+	height: 100vh;
+  	width: 100%;
+  	background-image: linear-gradient(to bottom, rgba(255,168,76,0.6) 0%,rgba(255,123,13,0.6) 100%), url('https://images.unsplash.com/photo-1446824505046-e43605ffb17f');
+  	background-blend-mode: soft-light;
+  	background-size: cover;
+  	background-position: center center;
+  	box-sizing: border-box;
+  	margin: 0;
+  	padding: 2rem;
+    }
+
+    .container {
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 35rem;
+  
+}
+
+  </style>
+  <div class="main-container">
+    <nav class="navbar bg-custom-color">
+      <div class="container-fluid d-flex align-items-center">
+        <a class="navbar-brand align-middle" href="index.html">
+          <img src="../images/logo8.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+        </a>
+    </div>
+    </nav>
+    <div class="container">
   <div class="wrapper">
     <div class="title-text">
       <div class="title login">Login</div>
@@ -86,6 +120,8 @@
         </form>
       </div>
     </div>
+  </div>
+  </div>
   </div>
 
   <!-- Password Validator-->
