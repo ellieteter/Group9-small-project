@@ -12,6 +12,11 @@ const ids = []
 let pageNumber = 1;
 let pageSize = 10; //
 
+// Call the function initially to load the count
+updateContactCount();
+
+setInterval(updateContactCount, 3000);
+
 function doLogin()
 {
 	userId = 0;
@@ -66,8 +71,10 @@ function doLogin()
 
 }
 
-function doRegister()
+function doRegister(event)
 {
+	event.preventDefault();
+
 	let firstName = document.getElementById("firstName").value;
 	let lastName = document.getElementById("lastName").value;
 	let username = document.getElementById("inputUsername").value;
@@ -90,11 +97,11 @@ function doRegister()
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Register.' + extension;
-	console.write("HI");
+
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try{
+
 	xhr.onreadystatechange = function() 
 	{
 		if (this.readyState == 4 && this.status == 200) 
@@ -108,6 +115,7 @@ function doRegister()
 
 			saveCookie();
 
+			
 			window.location.href = "contacts.html";
 		}
 		else if (this.status == 409)
@@ -119,9 +127,11 @@ function doRegister()
 		{
 			document.getElementById("registerResult").innerHTML = "Server error: " + this.status;
 		}
-	};
-	xhr.send(jsonPayload);
-}
+	}
+	try
+	{
+		xhr.send(jsonPayload);
+	}
 	catch (err)
 	{
 		document.getElementById("registerResult").innerHTML = err.message;
@@ -434,9 +444,11 @@ function loadContacts()
 }
 
 
+// Pageination
 function nextPage() {
     pageNumber++;
     loadContacts();
+	updatePaginationButtons();
 }
 
 function previousPage(event) {
@@ -444,6 +456,29 @@ function previousPage(event) {
     if (pageNumber > 1) {
         pageNumber--;
         loadContacts();
+		updatePaginationButtons();
+    }
+}
+
+function updatePaginationButtons(totalContacts) {
+    var prevPageButton = document.getElementById("prevPage");
+    var nextPageButton = document.getElementById("nextPage");
+
+    // Disable previous page button on page 1
+    if (pageNumber <= 1) {
+        prevPageButton.classList.add("disabled");
+    } else {
+        prevPageButton.classList.remove("disabled");
+    }
+    
+    // Max # of pages
+    var maxPage = Math.ceil(totalContacts / pageSize);
+    
+    // Disable next page button on last page
+    if (pageNumber >= maxPage) {
+        nextPageButton.classList.add("disabled");
+    } else {
+        nextPageButton.classList.remove("disabled");
     }
 }
 

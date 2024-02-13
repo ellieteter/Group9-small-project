@@ -26,6 +26,51 @@
 		z-index: 1000; 
 		}
 
+        .main-container{
+	height: 100vh;
+  	width: 100%;
+  	background-image: linear-gradient(to bottom, rgba(255,168,76,0.6) 0%,rgba(255,123,13,0.6) 100%), url('https://images.unsplash.com/photo-1446824505046-e43605ffb17f');
+  	background-blend-mode: soft-light;
+  	background-size: cover;
+  	background-position: center center;
+  	box-sizing: border-box;
+  	margin: 0;
+  	padding: 2rem;
+}
+
+
+#egg {
+    font-size: 40px; 
+    width: 3em;
+    height: 4em;
+    position: absolute;
+    left: 20%;
+    top: 90%;
+    margin-left: -1.5em;
+    margin-top: -2em;
+    box-shadow: #aaa 0 0 1px;
+    border-top-left-radius: 50% 60%;
+    border-top-right-radius: 50% 60%;
+    border-bottom-left-radius: 50% 40%;
+    border-bottom-right-radius: 50% 40%;
+    background: #f2b679 -webkit-radial-gradient(left top, rgba(255, 255, 255, .8), rgba(255, 255, 255, .1));
+		transition: all .2s linear 0;
+		-webkit-transition: .2s;
+		-webkit-transition-timing-function: linear;
+		-webkit-animation: anime_egg_move 3s infinite;
+		-webkit-animation-timing-function: linear;
+		-webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes anime_egg_move {
+		from {}
+		to {
+				-webkit-transform: rotate(360deg);
+				margin-left: 700px;
+		}
+}
+
+
         
     </style>
 </head>
@@ -35,7 +80,7 @@
 	<a id="logo" href="index.html">
 		<img src="../images/logo8.png" alt="Logo" width="60" height="60">
 	  </a>
-
+      <div class="main-container">
       <section class="team-section py-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -129,8 +174,9 @@
             </div><!--//row-->
             
         </div>
-        
     </section>
+</div>
+<a href="https://github.com/ellieteter/Group9-small-project" target="_blank"><div id="egg"></div></a>
 </body>
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/svg-with-js.min.css" integrity="sha512-W3ZfgmZ5g1rCPFiCbOb+tn7g7sQWOQCB1AkDqrBG1Yp3iDjY9KYFh/k1AWxrt85LX5BRazEAuv+5DV2YZwghag==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 </html>

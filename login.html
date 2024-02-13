@@ -53,7 +53,7 @@
           <br />
           <p class="course">Spring 2024 - COP4331</p>
         </form>
-        <form action="#" class="signup">
+        <form id="signup">
           <div class="field">
             <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
           </div>
@@ -80,7 +80,7 @@
           </div>
           <div class="field btn">
             <div class="btn-layer"></div>
-            <input type="submit" value="Signup" onclick="doRegister();">
+            <input type="submit" id="signupButton" value="Signup" onclick="doRegister(event);">
             <span id="registerResult"></span>
           </div>
         </form>
