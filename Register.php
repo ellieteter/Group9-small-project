@@ -10,7 +10,6 @@ if ($conn->connect_error) {
 
     //Check if they are registered already
     $checkstmt = $conn->prepare("SELECT ID FROM Users WHERE Login=?");
-
     $checkstmt->bind_param("s", $inData["login"]);
     $checkstmt->execute();
 
@@ -19,7 +18,6 @@ if ($conn->connect_error) {
     if ($checkresult->num_rows > 0) {
         //User is already registered
         $checkstmt->close();
-        $conn->close();
         http_response_code(409);
         returnWithError("User already registered with this login");
     } else {
@@ -28,7 +26,7 @@ if ($conn->connect_error) {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($stmt->affected_rows > 0) {
+        if ($conn->affected_rows > 0) {
             http_response_code(200);
             returnWithInfo($inData["firstName"], $inData["lastName"], $conn->insert_id);
         } else {
@@ -37,6 +35,7 @@ if ($conn->connect_error) {
         }
 
         $stmt->close();
+        $conn->close();
     }
 
     $conn->close();

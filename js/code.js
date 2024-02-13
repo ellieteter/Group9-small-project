@@ -333,36 +333,6 @@ function updateContactCount() {
 			// 	let jsonObject = JSON.parse( xhr.responseText );
 			// 	var count = jsonObject.Count;
 		
-<<<<<<< Updated upstream
-			// 	document.getElementById('contactCount').textContent = '(' + count + ')';
-
-			// 	if (count % 10 != 0)
-			// 	{
-			// 		document.getElementById('pageCount').textContent = 'Showing '+ count % 10+' to 10 of '+ count;
-			// 	}
-				
-			// 	else
-			// 	{
-			// 		document.getElementById('pageCount').textContent = 'Showing '+ count +' to 10 of '+ count;
-			// 	}
-			// }
-			// else if(this.status == 409)
-			// {
-			// 	document.getElementById('contactCount').textContent = '(0)';
-			// }
-			// ---- ORIGINAL CODE END ----
-
-			// I DONT KNOW WHATS WRONG WITH THIS ONE
-				let jsonObject = JSON.parse(xhr.responseText);
-                var count = jsonObject.Count;
-                let pageStartIndex = (pageNumber - 1) * pageSize + 1; // Starting index
-                let pageEndIndex = Math.min(pageNumber * pageSize, count); // Ending index
-                document.getElementById('contactCount').textContent = '(' + count + ')';
-                document.getElementById('pageCount').textContent = 'Showing ' + pageStartIndex + ' to ' + pageEndIndex + ' of ' + count; 
-            } else if (this.status == 409) {
-                document.getElementById('contactCount').textContent = '(0)';
-            }
-=======
 				document.getElementById('contactCount').textContent = '(' + count + ')';
 
 				if (count % 10 != 0)
@@ -380,7 +350,6 @@ function updateContactCount() {
 				document.getElementById('contactCount').textContent = '(0)';
 			}
 			
->>>>>>> Stashed changes
 		};
 		xhr.send(jsonPayload);
 	}
@@ -658,13 +627,7 @@ function searchContact()
                     
                     for (let i = 0; i < jsonObject.results.length; i++) {
                         let contact = jsonObject.results[i];
-<<<<<<< Updated upstream
-						// contactList += "<tr><td>" + contact.FirstName + "</td><td>" + contact.LastName + "</td><td style='padding: 0;'>" +
-						// "<span class='list-inline mb-0 input-group-text form-control' id='basic-addon1' style='background-color: green; color: white; border: none;'>" + contact.Phone + "</span></td><td>" + contact.Email + "</td><td>";
-						contactList += "<tr><td>" + contact.FirstName + "</td><td>" + contact.LastName + "</td><td>" + contact.Phone + "</span></td><td>" + contact.Email + "</td><td>";
-=======
 						contactList += "<tr><td>" + contact.FirstName + "</td><td>" + contact.LastName + "</td><td>" + contact.Phone + "</td><td>" + contact.Email + "</td><td>";
->>>>>>> Stashed changes
 						contactList += "<ul class='list-inline mb-0'>";
 						contactList += "<li class='list-inline-item'><button type='button' onclick='editRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-primary px-2' data-bs-toggle='modal' data-bs-target='#EditcontactModal' data-bs-placement='top' title='Edit'><i class='bx bx-pencil font-size-18'></i></button></li>";
 						contactList += "<li class='list-inline-item'><button type='button' onclick='deleteRow(" + JSON.stringify(jsonObject) + "," + i + ")' class='btn btn-danger px-2' data-bs-toggle='tooltip' data-bs-placement='top' title='Delete'><i class='bx bx-trash-alt font-size-18'></i></button></li>";
