@@ -12,10 +12,6 @@ const ids = []
 let pageNumber = 1;
 let pageSize = 10; 
 
-// Call the function initially to load the count
-updateContactCount();
-
-setInterval(updateContactCount, 3000);
 
 function doLogin()
 {
@@ -100,7 +96,7 @@ function doRegister()
 
 	xhr.onreadystatechange = function() 
 	{
-		if (this.readyState == 4 && this.status == 200) 
+		if (this.status == 200) 
 		{
 			let jsonObject = JSON.parse( xhr.responseText );
 			userId = jsonObject.id;
