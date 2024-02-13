@@ -34,15 +34,28 @@
         }
 
         /* Space at the top and bottom of the page */
-        body {
+        /* body {
             padding-top: 20px;
             padding-bottom: 20px;
-        }
+        } */
+
+        .main-container{
+	height: 100vh;
+  	width: 100%;
+  	background-image: linear-gradient(to bottom, rgba(255,168,76,0.6) 0%,rgba(255,123,13,0.6) 100%), url('https://images.unsplash.com/photo-1446824505046-e43605ffb17f');
+  	background-blend-mode: soft-light;
+  	background-size: cover;
+  	background-position: center center;
+  	box-sizing: border-box;
+  	margin: 0;
+  	padding: 2rem;
+}
     </style>
 </head>
 <!-- <body style="height: 100vh; overflow-y: auto;"> -->
 
-<body style="height: 100vh; overflow-y: auto;"></body>
+<body style="height: 100vh; overflow-y: auto; margin: 0;" class="main-container">
+<div class="main-container">
 <div class="whitebg"></div>
 <div class="container">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
@@ -233,6 +246,9 @@
                 </div>
             </div>
         </div>
+        </div>
+    </div>
+</div>
         <style>
             body {
                 margin-top: 20px;
