@@ -327,27 +327,26 @@ function updateContactCount() {
 	{
 		xhr.onreadystatechange = function() 
 		{
-			// ---- ORIGINAL CODE START ----
 			if (this.readyState == 4 && this.status == 200) 
 			{
-			// 	let jsonObject = JSON.parse( xhr.responseText );
-			// 	var count = jsonObject.Count;
+			 	let jsonObject = JSON.parse( xhr.responseText );
+			 	var count = jsonObject.Count;
 		
-				document.getElementById('contactCount').textContent = '(' + count + ')';
+				document.getElementById('contactCount').innerHTML = '(' + count + ')';
 
 				if (count % 10 != 0)
 				{
-					document.getElementById('pageCount').textContent = 'Showing '+ count % 10+' to 10 of '+ count;
+					document.getElementById('pageCount').innerHTML = 'Showing '+ count % 10+' to 10 of '+ count;
 				}
 				
 				else
 				{
-					document.getElementById('pageCount').textContent = 'Showing '+ count +' to 10 of '+ count;
+					document.getElementById('pageCount').innerHTML = 'Showing '+ count +' to 10 of '+ count;
 				}
 			}
 			else if(this.status == 409)
 			{
-				document.getElementById('contactCount').textContent = '(0)';
+				document.getElementById('contactCount').innerHTML = '(0)';
 			}
 			
 		};

@@ -26,7 +26,7 @@ if ($conn->connect_error) {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($conn->affected_rows > 0) {
+        if ($stmt->affected_rows > 0) {
             http_response_code(200);
             returnWithInfo($inData["firstName"], $inData["lastName"], $conn->insert_id);
         } else {
