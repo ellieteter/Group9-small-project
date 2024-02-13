@@ -12,11 +12,6 @@ const ids = []
 let pageNumber = 1;
 let pageSize = 10; //
 
-// Call the function initially to load the count
-updateContactCount();
-
-setInterval(updateContactCount, 3000);
-
 function doLogin()
 {
 	userId = 0;
@@ -95,7 +90,7 @@ function doRegister()
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Register.' + extension;
-
+	console.write("HI");
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
