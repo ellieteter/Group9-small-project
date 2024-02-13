@@ -330,22 +330,19 @@
             }
         </style>
         <script>
-            window.location.onload = function () {
+            window.onload = function () {
                 loadContacts();
                 updatePaginationButtons();
             };
         </script>
         <script>
-            // Define the function to update contact count
-            function updateContactCount() {
-                // Your code to update contact count goes here
-            }
+            window.onload = function () {
+                // Call the function once
+                updateContactCount();
 
-            // Call the function once
-            updateContactCount();
-
-            // Set the interval to call the function every 3 seconds
-            setInterval(updateContactCount, 3000);
+                // Set the interval to call the function every 3 seconds
+                setInterval(updateContactCount, 3000)
+            };
         </script>
     </div>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'></script>
