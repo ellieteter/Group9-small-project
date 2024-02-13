@@ -39,22 +39,11 @@
             padding-bottom: 20px;
         } */
 
-        .main-container{
-	height: 100vh;
-  	width: 100%;
-  	background-image: linear-gradient(to bottom, rgba(255,168,76,0.6) 0%,rgba(255,123,13,0.6) 100%), url('https://images.unsplash.com/photo-1446824505046-e43605ffb17f');
-  	background-blend-mode: soft-light;
-  	background-size: cover;
-  	background-position: center center;
-  	box-sizing: border-box;
-  	margin: 0;
-  	padding: 2rem;
-}
     </style>
 </head>
 <!-- <body style="height: 100vh; overflow-y: auto;"> -->
 
-<body style="height: 100vh; overflow-y: auto; margin: 0;" class="main-container">
+<body style="height: 100vh; overflow: auto; margin: 0;">
 <div class="main-container">
 <div class="whitebg"></div>
 <div class="container">
@@ -250,10 +239,10 @@
     </div>
 </div>
         <style>
-            body {
+            /* body {
                 margin-top: 20px;
                 background-color: #eee;
-            }
+            } */
 
             .project-list-table {
                 border-collapse: separate;
@@ -344,6 +333,18 @@
                 color: white;
                 /* Optionally change the text color */
             }
+
+            .main-container{
+	min-height: 100vh;
+  	width: 100%;
+  	background-image: linear-gradient(to bottom, rgba(255,168,76,0.6) 0%,rgba(255,123,13,0.6) 100%), url('https://images.unsplash.com/photo-1446824505046-e43605ffb17f');
+  	background-blend-mode: soft-light;
+  	background-size: cover;
+  	background-position: center center;
+  	box-sizing: border-box;
+  	margin: 0;
+  	padding: 2rem;
+}
         </style>
         <script>
             window.onload = function () {
