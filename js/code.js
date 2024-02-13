@@ -113,7 +113,6 @@ function doRegister()
 
 			saveCookie();
 
-			
 			window.location.href = "contacts.html";
 		}
 		else if (this.status == 409)

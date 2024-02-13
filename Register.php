@@ -26,7 +26,6 @@ if ($conn->connect_error) {
         $stmt = $conn->prepare("INSERT into Users (firstName,lastName,Login,Password) VALUES(?,?,?,?)");
         $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["login"], $inData["password"]);
         $stmt->execute();
-        $result = $stmt->get_result();
 
         if ($conn->affected_rows > 0) {
             http_response_code(200);
